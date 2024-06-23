@@ -1,0 +1,1158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<!-- https://t.me/htmlcoding_html_coding_free -->
+
+<meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+
+<!-- STYLES -->
+	
+<style type="text/css">
+@import url('https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+*,
+*::after,
+*::before {
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Fira Sans', sans-serif;
+  background-image: url('https://i.ibb.co/g72rrGG/walloth.jpg');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+  background-size: cover;
+}
+
+section {
+  max-width: 576px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+header {
+  text-align: center;
+  margin: 0rem 0 0 0;
+}
+
+header img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+}
+
+header h3 {
+  color: #fff;
+  margin: 1px 0 1px 0;
+}
+
+header p {
+  color: #fff;
+}
+
+label {
+  color: #ffff00;
+  border-bottom: 4px solid crimson;
+  margin-left: 2rem;
+  width: fit-content;
+  padding: 0 0.25rem;
+  margin-top: 1rem;
+  display: block;
+}
+
+ul {
+  background-color: #fff;
+  flex: 1;
+  overflow-y: auto;
+  padding: 1.0rem 0.5rem 0 0.5rem;
+}
+
+ul li {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #000;
+  margin-bottom: 15px;
+  padding-bottom: 0.5rem;
+}
+
+.track-img {
+  width: 50px;
+  height: 50px;
+  margin-right: 10px;
+}
+
+.track-number {
+  color: #000;
+  margin-right: 10px;
+}
+
+.track-detail_name {
+  color: #000;
+}
+
+.track-detail_desc {
+  color: #16537e;
+}
+
+footer {
+  background-color: #000;
+  padding: 0 0.25rem 0.25rem 0.25rem;
+}
+
+.slider {
+  background-color: #000;
+  border-radius: 8px;
+  cursor: pointer;
+  height: 2px;
+  position: relative;
+  width: 100%;
+}
+
+.slider-progress {
+  background-color: crimson;
+  height: 100%;
+  pointer-events: none;
+  position: absolute;
+  width: 0%;
+}
+.slider-pin {
+  background-color: #fff;
+  border-radius: 8px;
+  height: 8px;
+  position: absolute;
+  pointer-events: all;
+  right: -5px;
+  top: -2px;
+  width: 8px;
+  box-shadow: (20px 20px 20px 20px rgba(0, 0, 0, 0.32));
+  transition: (transform 0.25s ease);
+}
+
+.count {
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.8rem;
+  margin: 3px 0 1rem 0;
+  font-weight: bold;
+}
+
+.event {
+  color:#fff;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+</style></head>
+
+<body><section>
+	
+<!-- CURRENT PLAYING HEADER -->
+	
+<header>
+<img src="https://i.ibb.co/FBM95gv/RRIcon.png" alt="playing-cover"/>
+<h3>Track Name</h3>
+<p>Track desc</p>
+</header>
+
+<!-- PLAYLIST LABEL-->
+	
+<label>Radio Stations</label>
+
+<!-- TRACK LIST -->
+	
+<ul></ul>
+
+<!-- MUSIC CONTROLS -->
+	
+<footer>
+	
+<!-- SLIDER -->
+	
+<div class="slider">
+<div class="slider-progress">
+<div class="slider-pin"></div>
+</div></div>
+
+<!-- COUNT -->
+	
+<div class="count">
+<span class="count-current">00:01</span>
+<span class="count-final">11:23</span>
+</div>
+
+<!-- EVENTS -->
+	
+<div class="event">
+<i class="fas fa-caret-left event-prev"></i>
+<i class="fas fa-play event-playPause"></i>
+<i class="fas fa-caret-right event-next"></i>
+<i class="fas fa-volume-up event-muteUnmute"></i>
+
+</div></footer></section>
+
+<audio src="" id="audio"></audio>
+<!-- https://t.me/htmlcoding_html_coding_free -->
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', function () {
+  const tracksList = [
+    {
+      audioSrc:
+        'https://stream5.thepuremix.net/softrock.mp3',		
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRRIcon.png',	
+      name: 'Soft Rock Radio',		
+      desc: 'Forever ROCK!',		
+      id: 1,		
+    },
+    {
+      audioSrc:
+        'https://stream-mz.planetradio.co.uk/planetrock.aac',		
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRRIcon.png',	
+      name: 'Planet Rock',		
+      desc: 'Forever ROCK!',		
+      id: 2,		
+    },
+    {
+      audioSrc:
+        'http://hydra.cdnstream.com/1521_128?listenerId=d08f5eca2b488fdcb48938fecc9f4b33&aw_0_1st.playerid=esPlayer&aw_0_1st.skey=1644379630',		
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRRIcon.png',	
+      name: 'Hard Rock Heaven',		
+      desc: 'Forever ROCK!',		
+      id: 3,		
+    },
+    {
+      audioSrc:
+        'http://pureplay.cdnstream1.com/6015_128.mp3',		
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRRIcon.png',	
+      name: '100 Hits-Heavy Metal',		
+      desc: 'Forever ROCK!',		
+      id: 4,		
+    },
+    {
+      audioSrc:
+        'http://jenny.torontocast.com:8028/stream',		
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRRIcon.png',	
+      name: 'Classic Rock 109 UK',		
+      desc: 'Forever ROCK!',		
+      id: 5,		
+    },
+    {
+      audioSrc:
+        'https://prod-35-197-88-50.wostreaming.net/galaxy-wkrlfmmp3-ibc1?session-id=86c70246a5dc96236a462d9ea7952257&source=TuneIn&gdpr=0&us_privacy=1YNY',		
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRRIcon.png',	
+      name: 'KRock Syracuse',		
+      desc: 'Forever ROCK!',		
+      id: 6,		
+    },
+    {
+      audioSrc:
+        'https://daniel.torontocast.com:1675/stream',		
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRRIcon.png',	
+      name: 'Metal Shop Rocks',		
+      desc: 'Forever ROCK!',		
+      id: 7,		
+    },
+    {
+      audioSrc:
+        'https://muzzik-live.morescreens.com/mts-1/playlist.m3u8',		
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRRIcon.png',	
+      name: 'Muzzik Rock & Roll',		
+      desc: 'Forever ROCK!',		
+      id: 8,		
+    },
+    {
+      audioSrc:
+        'https://stream-mz.planetradio.co.uk/planetrock.mp3',		
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRRIcon.png',	
+      name: 'Planet Rock',		
+      desc: 'Forever ROCK!',		
+      id: 9,		
+    },
+    {
+      audioSrc:
+        'https://rs6-krk2-cyfronet.rmfstream.pl/CLASSICROCKVT',		
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRRIcon.png',	
+      name: 'RMF Classic Rock',		
+      desc: 'Forever ROCK!',		
+      id: 10,		
+    },
+    {
+      audioSrc:
+        'https://str4uice.streamakaci.com/4uclassicrock320.mp3',		
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRRIcon.png',	
+      name: '4U Classic Rock',		
+      desc: 'Forever ROCK!',		
+      id: 11,		
+    },
+    {
+      audioSrc:
+        'http://rosetta.shoutca.st:8352/;',		
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRRIcon.png',	
+      name: 'HD Classic Rock',		
+      desc: 'Forever ROCK!',		
+      id: 12,		
+    },
+    {
+      audioSrc:
+        'http://ais-sa2.cdnstream1.com/1987_128.mp3',		
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRRIcon.png',	
+      name: 'The Metal Mixx',		
+      desc: 'Forever ROCK!',		
+      id: 13,		
+    },
+    {
+      audioSrc:
+        'https://listen.181fm.com/181-eagle_128k.mp3',		
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRRIcon.png',	
+      name: '181.fm - The Eagle',		
+      desc: 'Forever ROCK!',		
+      id: 14,		
+    },
+    {
+      audioSrc:
+        'https://listen.181fm.com/181-rock40_128k.mp3',		
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRRIcon.png',	
+      name: '181.fm - Rock 40',		
+      desc: 'Forever ROCK!',		
+      id: 15,		
+    },
+    {
+      audioSrc:
+        'https://listen.181fm.com/181-hairband_128k.mp3',		
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRRIcon.png',	
+      name: '181.fm - 80s Hairband',		
+      desc: 'Forever ROCK!',		
+      id: 16,		
+    },
+    {
+      audioSrc:
+        'http://listen.181fm.com/181-thepoint_128k.mp3',		
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRRIcon.png',	
+      name: '181.fm - The Point',		
+      desc: 'Forever ROCK!',		
+      id: 17,		
+    },
+    {
+      audioSrc:
+        'http://sc-80s.1.fm:8097/',		
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRRIcon.png',	
+      name: '1.FM - All Euro 80s Radio',		
+      desc: 'Forever ROCK!',		
+      id: 18,		
+    },
+    {
+      audioSrc:
+        'https://strm112.1.fm/back280s_mobile_mp3',		
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRRIcon.png',	
+      name: '1.FM - Back to the 80s: Playlist',		
+      desc: 'Forever ROCK!',		
+      id: 19,		
+    },
+    {
+      audioSrc:
+        'https://s4-webradio.rockantenne.de/rockantenne/stream/mp3?aw_0_1st.playerid=radio.de',		
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRRIcon.png',	
+      name: 'Rock Antenne',		
+      desc: 'Forever ROCK!',		
+      id: 20,		
+    },
+    {
+      audioSrc:
+        'https://s5-webradio.rockantenne.de/heavy-metal/stream/mp3?aw_0_1st.playerid=radio.de',		
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRRIcon.png',	
+      name: 'Rock Antenne - Heavy Metal',		
+      desc: 'Forever ROCK!',		
+      id: 21,		
+    },
+    {
+      audioSrc:
+        'http://usa17.fastcast4u.com:5784/stream/1/',		
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRRIcon.png',	
+      name: 'Chronix Aggression',		
+      desc: 'Forever ROCK!',		
+      id: 22,		
+    },
+    {
+      audioSrc:
+        'https://stream-ar.planetradio.co.uk/absoluteclassicrockhigh.aac',		
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRRIcon.png',	
+      name: 'Absolute Classic Rock UK',		
+      desc: 'Forever ROCK!',		
+      id: 23,		
+    },
+    {
+      audioSrc:
+        'https://live.leanstream.co/CFMIFM',		
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRRIcon.png',	
+      name: 'Classic Rock 101',		
+      desc: 'Forever ROCK!',		
+      id: 24,		
+    },
+    {
+      audioSrc:
+        'https://live.leanstream.co/CFOXFM',		
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRRIcon.png',	
+      name: '99.3 The Fox Rocks',		
+      desc: 'Forever ROCK!',		
+      id: 25,		
+    },
+    {
+      audioSrc:
+        'https://live.leanstream.co/CILQFM',		
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRRIcon.png',	
+      name: 'Q107 Classic Rock - Toronto',		
+      desc: 'Forever ROCK!',		
+      id: 26,		
+    },
+    {
+      audioSrc:
+        'http://streaming.radionomy.com/JamendoLounge',		
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRRIcon.png',	
+      name: 'Vinyle Rock',		
+      desc: 'Forever ROCK!',		
+      id: 27,		
+    },
+    {
+      audioSrc:
+        'https://bigrradio.cdnstream1.com/5120_128',		
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRRIcon.png',	
+      name: 'Ace Radio - The Hard Rock Channel',		
+      desc: 'Forever ROCK!',		
+      id: 28,		
+    },
+    {
+      audioSrc:
+        'https://bigrradio.cdnstream1.com/5119_128',		
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRRIcon.png',	
+      name: 'Ace Radio-The Hair Band Channel',		
+      desc: 'Forever ROCK!',		
+      id: 29,		
+    },
+    {
+      audioSrc:
+        'https://stream.open.fm/54',		
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRRIcon.png',	
+      name: 'OpenFM - 500 Heavy Hits',		
+      desc: 'Forever ROCK!',		
+      id: 30,		
+    },
+    {
+      audioSrc:
+        'https://stream.open.fm/40',		
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRRIcon.png',	
+      name: 'OpenFM - American Rock',		
+      desc: 'Forever ROCK!',		
+      id: 31,		
+    },
+    {
+      audioSrc:
+        'https://stream.open.fm/61',		
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRRIcon.png',	
+      name: 'OpenFM - Rock Ballady',		
+      desc: 'Forever ROCK!',		
+      id: 32,		
+    },
+    {
+      audioSrc:
+        'https://stream.open.fm/99',		
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRRIcon.png',	
+      name: 'OpenFM - Top 20 Rock',		
+      desc: 'Forever ROCK!',		
+      id: 33,		
+    },
+    {
+      audioSrc:
+        'https://stream.open.fm/82',		
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRRIcon.png',	
+      name: 'OpenFM - 500 Rock Hits',		
+      desc: 'Forever ROCK!',		
+      id: 34,		
+    },
+    {
+      audioSrc:
+        'https://22973.live.streamtheworld.com/KQRSFM.mp3',		
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRRIcon.png',	
+      name: 'KQRS - 92KQRS',		
+      desc: 'Forever ROCK!',		
+      id: 35,		
+    },
+    {
+      audioSrc:
+        'https://rawlco.leanstream.co/CJDJFM',		
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRRIcon.png',	
+      name: 'CJDJ Rock 102 FM',		
+      desc: 'Forever ROCK!',		
+      id: 36,		
+    },
+    {
+      audioSrc:
+        'http://live.starfm.ca:8000/StarFM.mp3',		
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRRIcon.png',	
+      name: 'CKLF Star94.7 FM',		
+      desc: 'Forever ROCK!',		
+      id: 37,		
+    },
+    {
+      audioSrc:
+        'https://ice5.securenetsystems.net:80/KCIM',		
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRRIcon.png',	
+      name: 'KCIM - 1380 AM',		
+      desc: 'Forever ROCK!',		
+      id: 38,		
+    },
+    {
+      audioSrc:
+        'http://listen.181fm.com/181-buzz_128k.mp3',		
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRRIcon.png',	
+      name: '181.fm - The Buzz Alt. Rock',		
+      desc: 'Forever ROCK!',		
+      id: 39,		
+    },
+    {
+      audioSrc:
+        'http://listen.181fm.com/181-classicbuzz_128k.mp3',		
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRRIcon.png',	
+      name: '181.fm - Classic Buzz Alt',		
+      desc: 'Forever ROCK!',		
+      id: 40,		
+    },
+    {
+      audioSrc:
+        'http://listen.181fm.com/181-rock_128k.mp3',		
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRRIcon.png',	
+      name: '181.fm - Rock 181',		
+      desc: 'Forever ROCK!',		
+      id: 41,		
+    },
+    {
+      audioSrc:
+        'http://listen.181fm.com/181-chloe_128k.mp3',		
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRRIcon.png',	
+      name: '181.fm - AAA Chloe',		
+      desc: 'Forever ROCK!',		
+      id: 42,		
+    },
+    {
+      audioSrc:
+        'http://listen.181fm.com/181-hardrock_128k.mp3',		
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRRIcon.png',	
+      name: '181.fm - The Rock! Hard Rock',		
+      desc: 'Forever ROCK!',		
+      id: 43,		
+    },
+    {
+      audioSrc:
+        'http://listen.011fm.com:8030/stream16',		
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRRIcon.png',	
+      name: '011FM House of Hair',		
+      desc: 'Forever ROCK!',		
+      id: 44,		
+    },
+    {
+      audioSrc:
+        'http://listen.011fm.com:8014/stream08?cb=626890.mp3',		
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRRIcon.png',	
+      name: '011FM The Vault Classic Rock',		
+      desc: 'Forever ROCK!',		
+      id: 45,		
+    },
+    {
+      audioSrc:
+        'https://streaming.radionomy.com/JamendoLounge?lang=en-US%2cen%3bq%3d0.9%2ces%3bq%3d0.8',		
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRRIcon.png',	
+      name: '1-Radio ROCK AMERICA',		
+      desc: 'Forever ROCK!',		
+      id: 46,		
+    },
+    {
+      audioSrc:
+        'https://streaming.radiostreamlive.com/radiorockon_devices',		
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRRIcon.png',	
+      name: 'Radio Rock On',		
+      desc: 'Forever ROCK!',		
+      id: 47,		
+    },
+    {
+      audioSrc:
+        'http://listen.181fm.com/181-yachtrock_128k.mp3',		
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRRIcon.png',	
+      name: '181.fm - Yacht Rock',		
+      desc: 'Forever ROCK!',		
+      id: 48,		
+    },
+    {
+      audioSrc:
+        'https://playerservices.streamtheworld.com/api/livestream-redirect/977_CLASSROCK.mp3',		
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRRIcon.png',	
+      name: '70s Rock - HitsRadio',
+      desc: 'Forever ROCK!',		
+      id: 49,		
+    },
+    {
+      audioSrc:
+        'https://playerservices.streamtheworld.com/api/livestream-redirect/977_ALTERN.mp3',		
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRRIcon.png',	
+      name: 'Alternative Rock - HitsRadio',		
+      desc: 'Forever ROCK!',		
+      id: 50,		
+    },
+    {
+      audioSrc:
+        'https://strmreg.1.fm/x_mobile_mp3',		
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRRIcon.png',	
+      name: '1.FM - Alternative Rock X Hits',		
+      desc: 'Forever ROCK!',		
+      id: 51,		
+    },
+    {
+      audioSrc:
+        'https://strmreg.1.fm/crock_mobile_mp3',		
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRRIcon.png',	
+      name: '1.FM - Classic Rock Replay',		
+      desc: 'Forever ROCK!',		
+      id: 52,		
+    },
+    {
+      audioSrc:
+        'https://icy.unitedradio.it/VirginRock70.mp3',		
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRRIcon.png',	
+      name: 'Virgin Rock 70',		
+      desc: 'Forever ROCK!',		
+      id: 53,		
+    },
+    {
+      audioSrc:
+        'https://icy.unitedradio.it/VirginRock80.mp3',		
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRRIcon.png',	
+      name: 'Virgin Rock 80',		
+      desc: 'Forever ROCK!',		
+      id: 54,		
+    },
+    {
+      audioSrc:
+        'https://icy.unitedradio.it/VirginRockClassics.mp3',		
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRRIcon.png',	
+      name: 'Virgin Rock Classic',		
+      desc: 'Forever ROCK!',		
+      id: 55,		
+    },
+    {
+      audioSrc:
+        'https://icy.unitedradio.it/VirginRockAlternative.mp3',		
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRRIcon.png',	
+      name: 'Virgin Rock Alternative',		
+      desc: 'Forever ROCK!',		
+      id: 56,		
+    },
+    {
+      audioSrc:
+        'https://icy.unitedradio.it/VirginHardRock.mp3',		
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRRIcon.png',	
+      name: 'Virgin Hard Rock',		
+      desc: 'Forever ROCK!',		
+      id: 57,		
+    },
+    {
+      audioSrc:
+        'https://icy.unitedradio.it/VirginRockParty.mp3',		
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRRIcon.png',	
+      name: 'Virgin Rock Party',		
+      desc: 'Forever ROCK!',		
+      id: 58,		
+    },
+    {
+      audioSrc:
+        'http://209.133.216.3:7100/;',		
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRRIcon.png',	
+      name: 'Wild Rock Radio',		
+      desc: 'Forever ROCK!',		
+      id: 59,		
+    },
+    {
+      audioSrc:
+        'https://simba.streampanel.cloud:5280/stream',		
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRRIcon.png',	
+      name: 'Stahlradio',		
+      desc: 'Forever ROCK!',		
+      id: 60,		
+    },
+    {
+      audioSrc:
+        'https://rautemusik-de-hz-fal-stream14.radiohost.de/wackenradio?ref=radiode',		
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRRIcon.png',	
+      name: 'Wacken Radio',		
+      desc: 'Forever ROCK!',		
+      id: 61,		
+    },
+    {
+      audioSrc:
+        'https://nordic.streampanel.cloud/stream',		
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRRIcon.png',	
+      name: 'Metal Only',		
+      desc: 'Forever ROCK!',		
+      id: 62,		
+    },
+    {
+      audioSrc:
+        'https://rautemusik-de-hz-fal-stream12.radiohost.de/wackenradio?ref=radiode',		
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRRIcon.png',	
+      name: '#Musik Metal',		
+      desc: 'Forever ROCK!',		
+      id: 63,		
+    },
+    {
+      audioSrc:
+        'https://rautemusik-de-hz-fal-stream13.radiohost.de/rock?ref=radiode',		
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRRIcon.png',	
+      name: 'Rock by rautemusik',		
+      desc: 'Forever ROCK!',		
+      id: 64,		
+    },
+    {
+      audioSrc:
+        'http://burnfm.radionetz.de:8000/burn-fm.mp3',		
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRRIcon.png',	
+      name: 'BurnFM',		
+      desc: 'Forever ROCK!',		
+      id: 65,		
+    },
+    {
+      audioSrc:
+        'https://radiorock.stream.laut.fm/radiorock?ref=radiode&t302=2022-02-09_08-13-24&uuid=8b21a2f9-41ea-4328-a37e-16e100fb94a9',		
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRRIcon.png',	
+      name: 'Rock',		
+      desc: 'Forever ROCK!',		
+      id: 66,		
+    },
+    {
+      audioSrc:
+        'https://streams.rockland.de/mainz/mp3-128/radiode/',		
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRRIcon.png',	
+      name: 'Rockland Radio - Mainz/Wiesbaden',		
+      desc: 'Forever ROCK!',		
+      id: 67,		
+    },
+    {
+      audioSrc:
+        'https://streams.radiobob.de/bob-live/mp3-128/radiode/',		
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRRIcon.png',	
+      name: 'RADIO BOB!',		
+      desc: 'Forever ROCK!',		
+      id: 68,		
+    },
+    {
+      audioSrc:
+        'https://f121.rndfnk.com/ard/hr/hr1/live/mp3/128/stream.mp3?aggregator=radio-de&sid=24ra4V5TKmPy0RVB08z8828k0eK&token=IIlyV_4kUz2BOnO6BE3cAU2qbxVNv7XVmsVoYV5Us-E&tvf=BxdWboQg0hZmMTIxLnJuZGZuay5jb20',		
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRRIcon.png',	
+      name: 'hr1',		
+      desc: 'Forever ROCK!',		
+      id: 69,		
+    },
+    {
+      audioSrc:
+        'http://rockradiohoeren.de:8090/stream/1/',		
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRRIcon.png',	
+      name: 'rockradio',		
+      desc: 'Forever ROCK!',		
+      id: 70,		
+    },
+    {
+      audioSrc:
+        'https://rt1-rock.cast.addradio.de/rt1/rock/mp3/high/stream.mp3?aw_0_1st.playerid=radioplayer.de',		
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRRIcon.png',	
+      name: 'RT1 ROCK',		
+      desc: 'Forever ROCK!',		
+      id: 71,		
+    },
+    {
+      audioSrc:
+        'https://nashe1.hostingradio.ru:18000/rock-128.mp3',		
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRRIcon.png',	
+      name: 'Rock FM 95.2',		
+      desc: 'Forever ROCK!',		
+      id: 72,		
+    },
+    {
+      audioSrc:
+        'https://pl-play.adtonos.com/rock-radio',		
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRRIcon.png',	
+      name: 'Rock Radio',		
+      desc: 'Forever ROCK!',		
+      id: 73,		
+    },
+    {
+      audioSrc:
+        'http://rock-inside.com:8005/live',		
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRRIcon.png',	
+      name: 'Rock Inside',		
+      desc: 'Forever ROCK!',		
+      id: 74,		
+    },
+    {
+      audioSrc:
+        'https://celtic-rock.stream.laut.fm/celtic-rock?ref=radiode&t302=2022-02-09_08-21-47&uuid=9f1afe18-cc56-4067-82da-6f1cd5fc8714',		
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRRIcon.png',	
+      name: 'celtic-rock',		
+      desc: 'Forever ROCK!',		
+      id: 75,		
+    },
+    {
+      audioSrc:
+        'https://tuner.m1.fm/rock.mp3',		
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRRIcon.png',	
+      name: 'Forever ROCK!',		
+      desc: 'Forever ROCK!',		
+      id: 76,		
+    },
+    {
+      audioSrc:
+        'https://live.leanstream.co/CFMIFM',		
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRRIcon.png',	
+      name: 'Classic Rock 101',		
+      desc: 'Forever ROCK!',		
+      id: 77,		
+    },
+    {
+      audioSrc:
+        'https://rockfeuer.stream.laut.fm/rockfeuer?ref=radiode&t302=2022-02-09_08-23-55&uuid=4fb0b90b-f4f0-4ed5-94d9-b96f54b25b0f',		
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRRIcon.png',	
+      name: 'Rock Feuer',		
+      desc: 'Forever ROCK!',		
+      id: 78,		
+    },
+    {
+      audioSrc:
+        'https://scdn.nrjaudio.fm/adwz1/de/33021/mp3_128.mp3?origine=radio.net',		
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRRIcon.png',	
+      name: 'ENERGY Rock',		
+      desc: 'Forever ROCK!',		
+      id: 79,		
+    },
+    {
+      audioSrc:
+        'https://stream.rockfm.at:8443/',		
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRRIcon.png',	
+      name: 'Rock FM',		
+      desc: 'Forever ROCK!',		
+      id: 80,		
+    },
+    {
+      audioSrc:
+        'https://streamosw.ir-media-tec.com/rock/mp3-128/radiode_web/',		
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRRIcon.png',	
+      name: 'Ostseewelle - Rock Hits',		
+      desc: 'Forever ROCK!',		
+      id: 81,		
+    },
+    {
+      audioSrc:
+        'http://144.217.77.176:8000/stream/1/',		
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRRIcon.png',	
+      name: 'Rock Radio1',		
+      desc: 'Forever ROCK!',		
+      id: 82,		
+    },
+    {
+      audioSrc:
+        'https://stream-mz.planetradio.co.uk/rock.aac',		
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRRIcon.png',	
+      name: 'Rock FM UK',		
+      desc: 'Forever ROCK!',		
+      id: 83,		
+    },
+    {
+      audioSrc:
+        'https://stream.kanalplus.fm/kp128',		
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRRIcon.png',	
+      name: 'Rockkanalen',		
+      desc: 'Forever ROCK!',		
+      id: 84,		
+    },
+    {
+      audioSrc:
+        'https://metal-oldies-rock.stream.laut.fm/metal-oldies-rock?ref=radiode&t302=2022-02-09_08-32-28&uuid=2f8cb2a9-b5ab-4bb0-a836-d8b3311bde49',		
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRRIcon.png',	
+      name: 'metal-oldies-rock',		
+      desc: 'Forever ROCK!',		
+      id: 85,		
+    },
+    {
+      audioSrc:
+        'https://edge57.streams.arabella.at/arabella-rock?aggregator=radio-at',		
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRRIcon.png',	
+      name: 'Arabella Rock',		
+      desc: 'Forever ROCK!',		
+      id: 86,		
+    },
+    {
+      audioSrc:
+        'https://scdn.nrjaudio.fm/adwz1/fr/30621/mp3_128.mp3?origine=radio.net',		
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRRIcon.png',	
+      name: 'Nostalgie Rock',		
+      desc: 'Forever ROCK!',		
+      id: 87,		
+    },
+    {
+      audioSrc:
+        'http://stream.mandragola.com/rj_rock',		
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRRIcon.png',	
+      name: 'Radio Jeans - Rock',		
+      desc: 'Forever ROCK!',		
+      id: 88,		
+    },
+    {
+      audioSrc:
+        'https://classicrock.stream.laut.fm/classicrock?ref=radiode&t302=2022-02-09_08-35-38&uuid=a10fb61e-ea90-49fa-b17c-cabbc050f11c',		
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRRIcon.png',	
+      name: 'classic rock',		
+      desc: 'Forever ROCK!',		
+      id: 89,		
+    },
+    {
+      audioSrc:
+        'https://allzic17.ice.infomaniak.ch/allzic17.mp3',		
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRRIcon.png',	
+      name: 'Allzic Rock FM',		
+      desc: 'Forever ROCK!',		
+      id: 90,		
+    },
+    {
+      audioSrc:
+        'https://rs8-krk2-cyfronet.rmfstream.pl/ROCK',		
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRRIcon.png',	
+      name: 'RMF Rock',		
+      desc: 'Forever ROCK!',		
+      id: 91,		
+    },
+    {
+      audioSrc:
+        'http://onair15.xdevel.com:8950/;',		
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRRIcon.png',	
+      name: 'Radio Amore Rock',		
+      desc: 'Forever ROCK!',		
+      id: 92,		
+    },
+    {
+      audioSrc:
+        'http://streaming511.radionomy.com/RadioRockUK',		
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRRIcon.png',	
+      name: 'Radio Rock UK',		
+      desc: 'Forever ROCK!',		
+      id: 93,		
+    },
+    {
+      audioSrc:
+        'https://radiorecord.hostingradio.ru/rock96.aacp',		
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRRIcon.png',	
+      name: 'Radio Record Rock',		
+      desc: 'Forever ROCK!',		
+      id: 94,		
+    },
+    {
+      audioSrc:
+        'http://www.easyrockparadise.com:8300/stream',		
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRRIcon.png',	
+      name: 'Easy Rock Paradise',		
+      desc: 'Forever ROCK!',		
+      id: 95,		
+    },
+    {
+      audioSrc:
+        'https://icecast.radiofrance.fr/fiprock-midfi.mp3?ID=pd569ib97j',		
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRRIcon.png',	
+      name: 'FIP autour du rock',		
+      desc: 'Forever ROCK!',		
+      id: 96,		
+    },
+    {
+      audioSrc:
+        'https://1a-rock.radionetz.de/1a-rock.mp3',		
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRRIcon.png',	
+      name: '1A Rock',		
+      desc: 'Forever ROCK!',		
+      id: 97,		
+    },
+    {
+      audioSrc:
+        'https://rockhuhn.stream.laut.fm/rockhuhn?ref=radiode&t302=2022-02-09_09-54-20&uuid=a6394005-65a7-4298-817d-cc34c2ac41ae',		
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRRIcon.png',	
+      name: 'rockhuhn',		
+      desc: 'Forever ROCK!',		
+      id: 98,		
+    },
+    {
+      audioSrc:
+        'http://178.33.33.176:8060/stream/1/',		
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRRIcon.png',	
+      name: 'Rock Chicks Radio',		
+      desc: 'Forever ROCK!',		
+      id: 99,		
+    },
+    {
+      audioSrc:
+        'https://streambbr.ir-media-tec.com/rock/mp3-128/radiode_web/',		
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRRIcon.png',	
+      name: 'BB RADIO - Rock',		
+      desc: 'Forever ROCK!',		
+      id: 100,		
+    },
+  ];
+
+  const currentTrackName = document.querySelector('header h3');
+  const currentTrackDesc = document.querySelector('header p');
+  const currentTrackCover = document.querySelector('header img');
+  const currentTrackAudio = document.querySelector('audio');
+  const playPauseBtn = document.querySelector('.event-playPause');
+  const muteUnmuteBtn = document.querySelector('.event-muteUnmute');
+  const playNextBtn = document.querySelector('.event-next');
+  const playPrevBtn = document.querySelector('.event-prev');
+  const progress = document.querySelector('.slider-progress');
+  const currentTrackTime = document.querySelector('.count-current');
+  const finalTrackTime = document.querySelector('.count-final');
+  // ADD TRACKS TO MY PLAYLIST ON PAGE LOAD
+  (function addMyTracksList() {
+    for (let track of tracksList) {
+      var li = document.createElement('li');
+      li.id = track.id;
+      li.innerHTML = `
+                    <div class="track-number">0${track.id}</div>
+                    <img
+                    src=${track.coverSrc}
+                    class="track-img"
+                    alt=""
+                    />
+
+                    <div class="track-detail">
+                    <div class="track-detail_name">${track.name}</div>
+                    <div class="track-detail_desc">
+                        <small>${track.desc}</small>
+                    </div>
+                    </div>
+        `;
+      document.querySelector('ul').appendChild(li);
+      (function (id) {
+        li.addEventListener(
+          'click',
+          () => {
+            playSelectedTrack(id);
+          },
+          false
+        );
+      })(track.id);
+    }
+  })();
+
+  let trackId = 1;
+
+  const loadTrack = (songId) => {
+    const song = tracksList.find((track) => track.id === songId);
+
+    const { audioSrc, coverSrc, name, desc } = song;
+    currentTrackName.innerText = name;
+    currentTrackDesc.innerText = desc;
+    currentTrackAudio.src = audioSrc;
+    currentTrackCover.src = coverSrc;
+  };
+
+  const playSelectedTrack = (songId) => {
+    trackId = songId;
+    loadTrack(songId);
+    playTrack();
+  };
+
+  loadTrack(trackId);
+
+  const playTrack = () => {
+    playPauseBtn.classList.remove('fa-play');
+    playPauseBtn.classList.add('fa-pause');
+
+    currentTrackAudio.play();
+  };
+
+  const pauseTrack = () => {
+    playPauseBtn.classList.remove('fa-pause');
+    playPauseBtn.classList.add('fa-play');
+
+    currentTrackAudio.pause();
+  };
+
+  const playPrevTrack = () => {
+    trackId--;
+
+    if (trackId < 0) {
+      trackId = tracksList.length - 1;
+    }
+    loadTrack(trackId);
+    playTrack();
+  };
+
+  const playNextTrack = () => {
+    trackId++;
+    if (trackId > tracksList.length - 1) {
+      trackId = 0;
+    }
+    loadTrack(trackId);
+    playTrack();
+  };
+
+  const updateProgress = () => {
+    const currentTime = currentTrackAudio.currentTime;
+    const trackDuration = currentTrackAudio.duration;
+    const percent = (currentTime / trackDuration) * 100;
+    progress.style.width = percent + '%';
+    let curMins = Math.floor(currentTime / 60);
+    let curSecs = Math.floor(currentTime - curMins * 60);
+    let durMins = Math.floor(trackDuration / 60) || '--';
+    let durSecs = Math.floor(trackDuration - durMins * 60) || '--';
+
+    if (curMins < 10) {
+      curMins = `0${curMins}`;
+    }
+    if (curSecs < 10) {
+      curSecs = `0${curSecs}`;
+    }
+    if (durMins < 10) {
+      durMins = `0${durMins}`;
+    }
+    if (durSecs < 10) {
+      durSecs = `0${durSecs}`;
+    }
+
+    currentTrackTime.innerText = `${curMins}:${curSecs}`;
+    finalTrackTime.innerText = `${durMins}:${durSecs}`;
+  };
+
+  const muteUnmuteTrack = () => {
+    if (currentTrackAudio.muted) {
+      currentTrackAudio.muted = false;
+      muteUnmuteBtn.classList.remove('fa-volume-mute');
+      muteUnmuteBtn.classList.add('fa-volume-up');
+    } else {
+      currentTrackAudio.muted = true;
+      muteUnmuteBtn.classList.remove('fa-volume-up');
+      muteUnmuteBtn.classList.add('fa-volume-mute');
+    }
+  };
+
+  playPauseBtn.addEventListener('click', () => {
+    const currentlyPlaying = playPauseBtn.classList.contains('fa-pause');
+
+    currentlyPlaying ? pauseTrack() : playTrack();
+  });
+  muteUnmuteBtn.addEventListener('click', () => muteUnmuteTrack());
+
+  playPrevBtn.addEventListener('click', () => playPrevTrack());
+  playNextBtn.addEventListener('click', () => playNextTrack());
+
+  currentTrackAudio.addEventListener('timeupdate', () => updateProgress());
+});
+</script></body></html><!-- https://t.me/htmlcoding_html_coding_free -->
