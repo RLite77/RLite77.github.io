@@ -1,0 +1,200 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+
+<title>Radio Astro Live</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script type="text/javascript">
+/*JS SEARCH FILTRADO*/
+var _0xc36e=["","split","0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ+/","slice","indexOf","","",".","pow","reduce","reverse","0"];function _0xe59c(d,e,f){var g=_0xc36e[2][_0xc36e[1]](_0xc36e[0]);var h=g[_0xc36e[3]](0,e);var i=g[_0xc36e[3]](0,f);var j=d[_0xc36e[1]](_0xc36e[0])[_0xc36e[10]]()[_0xc36e[9]](function(a,b,c){if(h[_0xc36e[4]](b)!==-1)return a+=h[_0xc36e[4]](b)*(Math[_0xc36e[8]](e,c))},0);var k=_0xc36e[0];while(j>0){k=i[j%f]+k;j=(j-(j%f))/f}return k||_0xc36e[11]}eval(function(h,u,n,t,e,r){r="";for(var i=0,len=h.length;i<len;i++){var s="";while(h[i]!==n[e]){s+=h[i];i++}for(var j=0;j<n.length;j++)s=s.replace(new RegExp(n[j],"g"),j);r+=String.fromCharCode(_0xe59c(s,e,10)-t)}return decodeURIComponent(escape(r))}("OBxpBxOpOBipxBpBxZpBBBpOOBpBxqpBBqpBOZpBxkpBOkpBkqpxipxipBZopxipOBqpOBBpOZopOZOpOBopxipBZopxipBBBpBBOpBBipBBqpBBopBBkpBBxpBOZpBOBpBOOpBxOpBxipBxqpBxopBxkpBxxpOZZpOZBpOZOpOZipOZqpOZopOZkpOZxpOBZpOBBpOBOpOBipOBqpOBopOBkpOBxpOOZpOOBpOOOpOOipBiOpBiipBiqpBiopBikpBixpBqZpBqBpBqOpBqipBqqpBqopBqkpBqxpBoZpBoBpBoOpBoipBoqpBoopBokpBoxpBkZpBkBpBkOpBkipBZqpBBZpxipBZopxipOBqpOZopOZOpBxqpBxkpxipBZopxipOZOpOZxpBxopBxkpOOBpBoZpBxxpxipBZopxipxipBZopxipxipBZopxipBZxpxipBZopxipOBBpOBZpOOZpxipBZopxipOBipBxkpBxopOBkpBxqpBxkpxipBZopxipOBipBxkpOBxpBxkpOBipOBqpBxkpxipBZopxipBBBpxipBkkpBOqpBxxpOBkpOZxpBxqpOBopOZOpOBZpOZxpxBpBxZpBBBpOOBpBxkpBOBpBOOpBxqpBZBpBxopBZopBxkpBZopBxxpBZOpOOqpOBxpBxOpOBipxBpOZZpBOkpBxZpBBBpOOBpBxqpBBqpBOZpBxkpBkqpBBipBkkpBkqpBxZpBBBpOOBpBxqpBBqpBOZpBxkpBkqpBBOpBkkpBkkpBZBpBxZpBBBpOOBpBxqpBBqpBOZpBxkpBkqpBBBpBkkpBZOpBOqpOBxpBxOpOBipxBpOZBpBOkpOZZpBkqpBxZpBBBpOOBpBxqpBBqpBOZpBxkpBkqpBBqpBkkpBkkpBZBpBBBpBZopBxkpBZOpBOqpOBxpBxOpOBipxBpOZOpBOkpOZZpBkqpBxZpBBBpOOBpBxqpBBqpBOZpBxkpBkqpBBqpBkkpBkkpBZBpBBBpBZopBxxpBZOpBOqpOBxpBxOpOBipxBpOZipBOkpBxopBkqpBxZpBBBpOOBpBxqpBBqpBOZpBxkpBkqpBBOpBkkpBkkpBZBpBxZpBBBpOOBpBxqpBBqpBOZpBxkpBkqpBBBpBkkpBZOpBkqpBxZpBBBpOOBpBxqpBBqpBOZpBxkpBkqpBBOpBBBpBkkpBkkpBZBpBZOpBkqpBxZpBBBpOOBpBxqpBBqpBOZpBxkpBkqpBOOpBkkpBkkpBZBpBxxpOBkpOZxpBxqpOBopOZOpOBZpOZxpBZBpBxOpBZopBxipBZopBxqpBZOpOOqpOZOpBxxpBZBpOZBpBkqpBxZpBBBpOOBpBxqpBBqpBOZpBxkpBkqpBBopBkkpBkkpBZBpBxipBZOpxOpBOkpBOkpBZkpBBOpBZOpOBipBxkpOBopOBkpOBipOZxpxBpBxOpBZqpBOkpOZBpBkqpBxZpBBBpOOBpBxqpBBqpBOZpBxkpBkqpBBopBkkpBkkpBZBpBxipBZOpBZipBZBpBqkpBxOpOBopOZBpBkqpBxZpBBBpOOBpBxqpBBqpBOZpBxkpBkqpBOBpBkkpBkkpBZBpBxkpBZopBxqpBZOpBZOpOOkpBZopBBBpBZOpBOqpOBxpBxOpOBipxBpOZqpBOkpBxZpBBBpOOBpBxqpBBqpBOZpBxkpBkqpBBBpBkkpBOqpOOZpOZBpOZOpOZopBxkpBZBpOZipBOxpBBBpBZOpOOqpOZqpBOkpOZOpBkqpOZipxkpBxxpBkkpBZqpOZqpBOqpOZipBOkpBZBpOZipBZkpBZBpOZipxkpBxxpBZOpBZOpBBZpBxxpOOkpOBipBxkpOBopOBkpOBipOZxpxBpOZqpOOopOOopBxZpBBBpOOBpBxqpBBqpBOZpBxkpBkqpBBOpBBOpBkkpOOkpBxkpOBxpBxOpOZopBZBpBxxpOBkpOZxpBxqpOBopOZOpOBZpOZxpBZBpOZBpBZopOBkpBZopOZxpBZopOBopBZopBxkpBZopOBipBZOpOOqpOBipBOkpxipxipBOqpBxxpOBZpOBipBZBpOBxpBxOpOBipxBpOZOpBOkpBBBpBZopOZopBxkpOZxpBOkpOZBpBZxpOZopBxkpOZxpOZZpOBopOZBpBOqpOZOpBOopOZopBxkpOZxpBOqpOZOpBZqpBZqpBZOpOOqpOBxpBxOpOBipxBpOBqpBOkpxipxipBOqpOOZpOZBpOZOpOZopBxkpBZBpOZBpBkqpOZOpBkkpxOpBOkpBOkpOZxpBkqpBxkpBkkpBZOpOOqpOBqpBZqpBOkpOZBpBkqpOZOpBkkpBOqpOZOpBZqpBZqpOOkpBxxpOBZpOBipBZBpOBxpBxOpOBipxBpOZipBOkpBBBpBOqpOZipBOopOZxpBZxpOZopBxkpOZxpOZZpOBopOZBpBOqpOZipBZqpBZqpBZOpOBqpBOkpOBqpBZxpOBipBxkpOBBpOZopBxOpBxqpBxkpBZBpOZxpBxkpOOZpxBpBoipBxkpOZZpBikpOOBpOBBpBZBpOZxpBkqpOZipBkkpBZopxipOZZpxipBZOpBZopOZipBZOpBOqpOBipBZqpBOkpBoqpOBopOBipOZOpOZxpOZZpBZxpBxxpOBipOBZpOZkpBiqpOZBpBxOpOBipBiqpOBZpBxopBxkpBZBpBxZpBBBpOOBpBxkpBOBpBOOpBxqpBZBpOBqpBZopBxkpBZopBBOpBBBpBZOpBZkpOBopBZOpOOkpOBipBxkpOBopOBkpOBipOZxpxBpBxopBxkpBxqpOBZpBxopBxkpBokpBoipBqOpBiqpOBZpOZkpOBBpOBZpOZxpBxkpOZxpOBopBZBpBxkpOBqpBxqpBxOpOBBpBxkpBZBpOBipBZOpBZOpOOkpBZBpxipBoqpOBqpBxOpBoqpBqxpBoqpBxOpOBqpOBqpBqxpBxOpBxOpBxOpBoqpOBqpBqxpBxOpBxOpBoqpBoqpBoqpBqxpBxOpBxOpBxOpBxOpBoqpBqxpBxOpBoqpOBqpBxOpBoqpBqxpBxOpBxOpBoqpBoqpOBqpBqxpBxOpBxOpBxOpBoqpBxOpBqxpBxOpBxOpBoqpBoqpBxOpBqxpBxOpBoqpOBqpBxOpBxOpBqxpBoqpBxOpOBqpBxOpBqxpBoqpBxOpBoqpOBqpBqxpBxOpBoqpOBqpOBqpBoqpBqxpBxOpBxOpBxOpBoqpBxOpBqxpBxOpBxOpBxOpBxOpOBqpBqxpBxOpBxOpBxOpBoqpOBqpBqxpBxOpBoqpBxOpOBqpOBqpBqxpBoqpBxOpOBqpOBqpBqxpBxOpBxOpBxOpBoqpBoqpBqxpBxOpBoqpOBqpBxOpBoqpBqxpBxOpBxOpBoqpBoqpBxOpBqxpBxOpBxOpBxOpBxOpBoqpBqxpBxOpBoqpOBqpBxOpBxOpBqxpBxOpBxOpBoqpOBqpBoqpBqxpBxOpBxOpBoqpBoqpBoqpBqxpBxOpBxOpBoqpBoqpBxOpBqxpBoqpBxOpOBqpOBqpBqxpBoqpBxOpOBqpBxOpBqxpBxOpBoqpBxOpOBqpBoqpBqxpBxOpOBqpBoqpOBqpBqxpBoqpOBqpBxOpBoqpBqxpBoqpBxOpOBqpOBqpBqxpBoqpOBqpBoqpBoqpBqxpBoqpOBqpBxOpBxOpBqxpBxOpBxOpBoqpBoqpOBqpBqxpBxOpBoqpBxOpOBqpOBqpBqxpBxOpOBqpBxOpBoqpOBqpBqxpBxOpBxOpBoqpBoqpBxOpBqxpBxOpBoqpOBqpOBqpOBqpBqxpBxOpBoqpOBqpBxOpBoqpBqxpBxOpBoqpOBqpBxOpBxOpBqxpBoqpOBqpBoqpBoqpBqxpBoqpBxOpOBqpBxOpBqxpBoqpBxOpBoqpOBqpBqxpBxOpBxOpBoqpBoqpBoqpBqxpBxOpBxOpBoqpBoqpBxOpBqxpBoqpBxOpOBqpOBqpBqxpBoqpOBqpBoqpBoqpBqxpBxOpBxOpBoqpOBqpBoqpBqxpBxOpBxOpBoqpBoqpBxOpBqxpBxOpBoqpOBqpOBqpOBqpBqxpBxOpBoqpOBqpBxOpBoqpBqxpBxOpBoqpOBqpBxOpBxOpBqxpBoqpOBqpBoqpBoqpBqxpBoqpBxOpBxOpBxOpBqxpBxOpBxOpBxOpBoqpBoqpBqxpBxOpBoqpOBqpBxOpBoqpBqxpBxOpBxOpBoqpBoqpBxOpBqxpBxOpBxOpBxOpBxOpBoqpBqxpBxOpBoqpOBqpBxOpBxOpBqxpBxOpBxOpBoqpOBqpBoqpBqxpBxOpBxOpBoqpBoqpBoqpBqxpBxOpBxOpBoqpBoqpBxOpBqxpBoqpBxOpOBqpOBqpBqxpBoqpBxOpOBqpBxOpBqxpBxOpBoqpBxOpOBqpBoqpBqxpBxOpOBqpBoqpOBqpBqxpBxOpBoqpOBqpBoqpOBqpBqxpBxOpBxOpBxOpBxOpOBqpBqxpBxOpBoqpOBqpOBqpBoqpBqxpBoqpOBqpOBqpBxOpBqxpBxOpBoqpOBqpBoqpOBqpBqxpBxOpBxOpBxOpBxOpOBqpBqxpBxOpBxOpBoqpBxOpBoqpBqxpBxOpBoqpOBqpBxOpBoqpBqxpBxOpBxOpBxOpBoqpBxOpBqxpBoqpOBqpOBqpBxOpBqxpBxOpOBqpOBqpBxOpOBqpBqxpBoqpOBqpOBqpBxOpBqxpBoqpOBqpBxOpBoqpBqxpBoqpBxOpOBqpOBqpBqxpBxOpBoqpOBqpBxOpBxOpBqxpBxOpBxOpBoqpOBqpBxOpBqxpBxOpBxOpBoqpOBqpBoqpBqxpBxOpBoqpOBqpBxOpOBqpBqxpBoqpBxOpOBqpBxOpBqxpBoqpBxOpBoqpOBqpBqxpBxOpBoqpOBqpBoqpOBqpBqxpBxOpBxOpBxOpBxOpOBqpBqxpBxOpBxOpBoqpBxOpBoqpBqxpBoqpBxOpOBqpOBqpBqxpBoqpBxOpOBqpBxOpBqxpBoqpBxOpBoqpOBqpBqxpBxOpBoqpOBqpBxOpBxOpBqxpBxOpBxOpBoqpBoqpBoqpBqxpBxOpOBqpBoqpOBqpOBqpBqxpBxOpBxOpBoqpBoqpBoqpBqxpBxOpBoqpOBqpBoqpBxOpBqxpBxOpBxOpBxOpBoqpBxOpBqxpBxOpBoqpOBqpOBqpBoqpBqxpBxOpOBqpBxOpOBqpOBqpBqxpBxOpBxOpBxOpBxOpOBqpBqxpBxOpBoqpOBqpBxOpOBqpBqxpBxOpBxOpBxOpBoqpBxOpBqxpBoqpBxOpOBqpOBqpBqxpBoqpBxOpOBqpBxOpBqxpBxOpOBqpOBqpOBqpBxOpBqxpBxOpOBqpBoqpOBqpBqxpBoqpOBqpBxOpBoqpBqxpBoqpBxOpOBqpOBqpBqxpBoqpOBqpBoqpBoqpBqxpBoqpBxOpBoqpOBqpBqxpBxOpBoqpOBqpOBqpOBqpBqxpBxOpBxOpBoqpBoqpBoqpBqxpBxOpBoqpOBqpBxOpOBqpBqxpBxOpBoqpOBqpBxOpBxOpBqxpBxOpBxOpBxOpBoqpBxOpBqxpBxOpBoqpOBqpOBqpBoqpBqxpBoqpOBqpOBqpBxOpBqxpBxOpOBqpOBqpBxOpBxOpBqxpBoqpOBqpOBqpBxOpBqxpBoqpBxOpBoqpOBqpBqxpBxOpBoqpOBqpBoqpBoqpBqxpBxOpBoqpOBqpBxOpOBqpBqxpBxOpBoqpOBqpOBqpOBqpBqxpBxOpBxOpBoqpBxOpBoqpBqxpBxOpBoqpOBqpBxOpBoqpBqxpBxOpBoqpOBqpBxOpOBqpBqxpBoqpOBqpBoqpBoqpBqxpBoqpBxOpOBqpBxOpBqxpBoqpBxOpBoqpOBqpBqxpBxOpBxOpBxOpBoqpBoqpBqxpBxOpBxOpBoqpOBqpBoqpBqxpBxOpBxOpBoqpBxOpBoqpBqxpBxOpBoqpOBqpBxOpBxOpBqxpBxOpBxOpBxOpBoqpBxOpBqxpBxOpBoqpOBqpOBqpBoqpBqxpBoqpBxOpOBqpOBqpBqxpBxOpBxOpBxOpBoqpBoqpBqxpBxOpBoqpOBqpBxOpBoqpBqxpBxOpBxOpBoqpBoqpBxOpBqxpBxOpBxOpBxOpBxOpBoqpBqxpBxOpBoqpOBqpBxOpBxOpBqxpBxOpBxOpBoqpOBqpBoqpBqxpBxOpBxOpBoqpBoqpBoqpBqxpBxOpBxOpBoqpBoqpBxOpBqxpBoqpBxOpOBqpOBqpBqxpBoqpBxOpOBqpBxOpBqxpBxOpBoqpBxOpOBqpBoqpBqxpBxOpOBqpBoqpOBqpBqxpBoqpOBqpBxOpBoqpBqxpBoqpBxOpOBqpOBqpBqxpBxOpBoqpOBqpBxOpBxOpBqxpBxOpBxOpBoqpOBqpBxOpBqxpBxOpBxOpBoqpOBqpBoqpBqxpBxOpBoqpOBqpBxOpOBqpBqxpBoqpBxOpOBqpBxOpBqxpBoqpBxOpBoqpOBqpBqxpBxOpBoqpOBqpBxOpBxOpBqxpBxOpBxOpBoqpBoqpBoqpBqxpBxOpBxOpBoqpOBqpOBqpBqxpBxOpBxOpBoqpOBqpOBqpBqxpBxOpBxOpBoqpBxOpBoqpBqxpBxOpBxOpBxOpBoqpBxOpBqxpBoqpBxOpOBqpOBqpBqxpBoqpOBqpBxOpBoqpBqxpBoqpBxOpOBqpOBqpBqxpBxOpBoqpOBqpBxOpBxOpBqxpBxOpBxOpBoqpOBqpBxOpBqxpBxOpBxOpBoqpOBqpBoqpBqxpBxOpBoqpOBqpBxOpOBqpBqxpBoqpBxOpOBqpBxOpBqxpBoqpBxOpBoqpOBqpBqxpBxOpBxOpBxOpBoqpBoqpBqxpBxOpBxOpBoqpOBqpBoqpBqxpBxOpBxOpBoqpBoqpBxOpBqxpBxOpBxOpBxOpBoqpOBqpBqxpBoqpBxOpOBqpOBqpBqxpBoqpOBqpBoqpBoqpBqxpBxOpBxOpBxOpBxOpOBqpBqxpBoqpOBqpBoqpBoqpBqxpBoqpBxOpOBqpBxOpBqxpBoqpBxOpBoqpOBqpBqxpBxOpBxOpBxOpBxOpOBqpBqxpBxOpBoqpOBqpBxOpBxOpBqxpBxOpBoqpOBqpBxOpBxOpBqxpBxOpBoqpOBqpOBqpBoqpBqxpBoqpBxOpOBqpOBqpBqxpBoqpOBqpBoqpBoqpBqxpBxOpBoqpOBqpBxOpBxOpBqxpBxOpBxOpBoqpOBqpBoqpBqxpBxOpBoqpOBqpBxOpBxOpBqxpBxOpBxOpBoqpBxOpBoqpBqxpBxOpBxOpBxOpBoqpBxOpBqxpBoqpOBqpBoqpBoqpBqxpBoqpBxOpOBqpBxOpBqxpBoqpBxOpBoqpOBqpBqxpBxOpBoqpOBqpBxOpBxOpBqxpBxOpBxOpBoqpBoqpBoqpBqxpBxOpOBqpBoqpOBqpOBqpBqxpBxOpBxOpBoqpBoqpBoqpBqxpBxOpBoqpOBqpBoqpBxOpBqxpBxOpBxOpBxOpBoqpBxOpBqxpBxOpBoqpOBqpOBqpBoqpBqxpBxOpOBqpBxOpOBqpOBqpBqxpBxOpBxOpBxOpBxOpOBqpBqxpBxOpBoqpOBqpBxOpOBqpBqxpBxOpBxOpBxOpBoqpBxOpBqxpBoqpBxOpOBqpOBqpBqxpBoqpBxOpOBqpBxOpBqxpBoqpBxOpBoqpOBqpBqxpBxOpBxOpBoqpOBqpBoqpBqxpBxOpBxOpBoqpBoqpBxOpBqxpBxOpBxOpBxOpBoqpOBqpBqxpBxOpBxOpBxOpBoqpBxOpBqxpBxOpBoqpOBqpBoqpBoqpBqxpBxOpOBqpBoqpBxOpOBqpBqxpBxOpBxOpBxOpBoqpBoqpBqxpBoqpBxOpOBqpOBqpBqxpBxOpBoqpOBqpBoqpOBqpBqxpBxOpBxOpBxOpBxOpOBqpBqxpBxOpBxOpBoqpBxOpBoqpBqxpBxOpBoqpOBqpBxOpBoqpBqxpBxOpBxOpBxOpBoqpBxOpBqxpBoqpBxOpOBqpBxOpBqxpBoqpOBqpOBqpBxOpBqxpBxOpOBqpOBqpBxOpBxOpBqxpBoqpOBqpOBqpBxOpBqxpBoqpBxOpBxOpBoqpBqxpBoqpBoqpOBqpOBqpBqxpBoqpBxOpOBqpBxOpBqxpBxOpOBqpBoqpOBqpBqxpBxOpBoqpBxOpBxOpBxOpBqxpBoqpBxOpOBqpBxOpBqxpBxOpOBqpOBqpOBqpBxOpBqxpBxOpBoqpBxOpBxOpBxOpBqxpBoqpBxOpOBqpBxOpBqxpBxOpOBqpOBqpOBqpBxOpBqxpBxOpBoqpBxOpBxOpBxOpBqxpBoqpBxOpOBqpBxOpBqxpBxOpOBqpOBqpOBqpBxOpBqxpxipBZopBBqpBBkpBZopxipOBqpBxOpBoqpBqxpBoxpOZBpOBipBqOpOBxpxipBZopBBipBBqpBZopBBqpBZopBBkpBBkpBZOpBZOp",83,"ZBOiqokxp",25,8,45))
+/*FIN SEARCH FILTRADO*/
+</script>
+<style>
+*{user-select:none;margin:0;padding:0;box-sizing:border-box;outline:none;user-select:none;}
+
+play{background:hidden;color:#fff;left:0;right:0;height:2.5em;display:flex;flex-direction:row;align-items:center;justify-content:space-between;text-decoration:none;cursor:pointer;}
+#xs-header{background:#000;left: 0;position: fixed;top: 0;width: 100%;z-index: 90;height: 8%;}
+.xsplus{border:3px hidden;border-radius:5px;position:relative;display:inline-block;overflow-x:scroll;overflow-y:hidden;margin:5px;}
+div .poster{overflow-x:scroll;overflow-y:hidden;}
+
+body {margin:0;}
+body {
+  background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQEv3L7yW-lU7TFv7C-lk-JOoBFxtATRaBZCw&usqp=CAU');
+  background-repeat: round;
+  background-attachment: scroll;
+  background-position: center;
+  background-size: auto;
+  font-family: Garamond, serif
+ }
+
+.nta { position:relative ; overflow:hidden ; } div.scrollmenu { background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQEv3L7yW-lU7TFv7C-lk-JOoBFxtATRaBZCw&usqp=CAU'); overflow: auto; white-space: nowrap; position:relative ; overflow-y:hidden ; } div.scrollmenu a { display: inline-block; color: white; text-align:center; padding: 4px; text-decoration: none; } div.scrollmenu a:hover { background-color: black; } .cen{ position:relative ; text-align:center; color:white; } .centered{ font-size:14px; font-weight:bold; position:absolute ; top:80%; left: 50%; transform:translate(-50%,-50%) } .cent{ font-size:auto; position:absolute ; top:95%; left: 50%; transform:translate(-50%,-50%) } .nt{ width: 105px; border-radius: 5px; height: 150px ; z-index:1; } 
+
+.nnt{ width: 80px; border-radius: 2px; height: 80px; }
+
+img:hover {
+  box-shadow: 5px 5px 5px 5px red;
+}
+
+
+h1   {color: white;}
+p    {color: white;}
+
+figure {
+  display: table;
+}
+
+figcaption {
+  height: 40px;
+  display: table-caption;
+  caption-side: bottom;
+  background-color: black;
+  text-align: center;
+  color: white;
+  font-style: italic;
+}
+	
+</style>
+</head>
+
+
+<body>
+<center>
+<div class="scrollmenu">
+    
+<a href="go:home"> <img class="nnt" src="https://raw.githubusercontent.com/RLite77/pic/main/home.png">
+<a href="go:livetv"> <img class="nnt" src="https://raw.githubusercontent.com/RLite77/pic/main/livetv.png">
+<a href="go:radio"> <img class="nnt" src="https://raw.githubusercontent.com/RLite77/pic/main/radio.png">
+<a href="go:vod"> <img class="nnt" src="https://raw.githubusercontent.com/RLite77/pic/main/vod.png">
+<a href="go:sports"> <img class="nnt" src="https://raw.githubusercontent.com/RLite77/pic/main/sports.png">
+<a href="http://action_profile"> <img class="nnt" src="https://raw.githubusercontent.com/RLite77/pic/main/profile.png">
+<a href="http://action_exit"> <img class="nnt" src="https://raw.githubusercontent.com/RLite77/pic/main/exit.png">
+</a></div> </div><p></center>
+<br>
+<center>
+<h1 style="color:white;font-size:15px;text-shadow: 2px 2px red;">Please Use The Search Box To Find Radio Station</h1>
+</center>
+
+<play>
+<h1 style="color:#fff;font-size:35px;"><strong style="color:#008cf7;"></strong></h1>
+<input id="myInput" type="search" placeholder="Search..." size="14" style="margin: auto;;border-radius: 10px; outline: 2px solid red; border: 0px; padding: 4px 4px; font-size: 14pt;">
+</play><br>
+
+<center><div><div align="center" class="poster" >
+<h1 style="color:yellow;font-size:20px;text-shadow: 2px 2px red;">Astro Radio Live</h1><br>
+<h1 style="color:yellow;font-size:20px;text-shadow: 2px 2px red;">ERA Live</h1>
+                <div class="xsplus">
+<a href="https://audio1.syok.my/era" title="ERA FM"><figure><img style="border-radius:50%" class="poster" height="100px" src="https://media2.fishtank.my/stations/era/square_md.jpg" width="100px"/></a><figcaption>ERA FM</figcaption></figure></div>
+                         <div class="xsplus">
+<a href="https://audio1.syok.my/amp-era-kk" title="ERA Sabah"><figure><img style="border-radius:50%" class="poster" height="100px" src="https://media2.fishtank.my/stations/era-sabah/square_md.jpg" width="100px"/></a><figcaption>ERA Sabah</figcaption></figure></div>
+                <div class="xsplus">
+<a href="https://audio1.syok.my/amp-era-kch" title="ERA Sarawak"><figure><img style="border-radius:50%" class="poster" height="100px" src="https://media2.fishtank.my/stations/era-sarawak/square_md.jpg" width="100px"/></a><figcaption>ERA Sarawak</figcaption></figure></div>
+                <div class="xsplus">
+<a href="https://audio1.syok.my/astro-era-nusantera" title="ERA Nusantera"><figure><img style="border-radius:50%" class="poster" height="100px" src="https://media2.fishtank.my/stations/era-nusantera/141123/square_md.png" width="100px"/></a><figcaption>ERA Nusantera</figcaption></figure></div>
+                <div class="xsplus">
+<a href="https://audio1.syok.my/astro-era-flow" title="ERA Flow"><figure><img style="border-radius:50%" class="poster" height="100px" src="https://media2.fishtank.my/stations/era-flow/141123/square_md.png" width="100px"/></a><figcaption>ERA Flow</figcaption></figure></div>
+                <div class="xsplus">
+<a href="https://audio1.syok.my/astro-era-cintan" title="ERA Cintan"><figure><img style="border-radius:50%" class="poster" height="100px" src="https://media2.fishtank.my/stations/era-cintan/141123/square_md.png" width="100px"/></a><figcaption>ERA Cintan</figcaption></figure></div>
+                <div class="xsplus">
+<a href="https://audio1.syok.my/astro-era-khit" title="ERA K-Hit"><figure><img style="border-radius:50%" class="poster" height="100px" src="https://media2.fishtank.my/stations/era-khit/141123/square_md.png" width="100px"/></a><figcaption>ERA K-Hit</figcaption></figure></div>
+                <div class="xsplus">
+<a href="https://audio1.syok.my/astro-era-throwbaek" title="ERA Throwbaek"><figure><img style="border-radius:50%" class="poster" height="100px" src="https://media2.fishtank.my/stations/era-throwbaek/141123/square_md.png" width="100px"/></a><figcaption>ERA Throwbaek</figcaption></figure></div>
+                <div class="xsplus">
+<a href="https://audio1.syok.my/astro-era-lbnu" title="ERA Lagu Baru Nak Up"><figure><img style="border-radius:50%" class="poster" height="100px" src="https://media2.fishtank.my/stations/era-lbnu/141123/square_md.png" width="100px"/></a><figcaption>ERA Lagu Baru Nak Up</figcaption></figure></div>
+                <div class="xsplus">
+<a href="https://audio1.syok.my/astro-era-nurock" title="ERA NuRock"><figure><img style="border-radius:50%" class="poster" height="100px" src="https://media2.fishtank.my/stations/era-nurock/141123/square_md.png" width="100px"/></a><figcaption>ERA NuRock</figcaption></figure></div>
+                <div class="xsplus">
+<a href="https://audio1.syok.my/astro-era-indie" title="ERA Indie"><figure><img style="border-radius:50%" class="poster" height="100px" src="https://media2.fishtank.my/stations/era-indie/141123/square_md.png" width="100px"/></a><figcaption>ERA Indie</figcaption></figure></div>
+
+<h1 style="color:yellow;font-size:20px;text-shadow: 2px 2px red;">Sinar Live</h1>
+                <div class="xsplus">
+<a href="https://audio1.syok.my/sinar" title="Sinar FM"><figure><img style="border-radius:50%" class="poster" height="100px" src="https://media2.fishtank.my/stations/sinar/square_md.jpg" width="100px"/></a><figcaption>Sinar FM</figcaption></figure></div>
+                <div class="xsplus">
+<a href="https://audio1.syok.my/astro-sinar-rock" title="Sinar Rock Kapak"><figure><img style="border-radius:50%" class="poster" height="100px" src="https://media2.fishtank.my/stations/sinar-rock/080224/square_md.png" width="100px"/></a><figcaption>Sinar Rock Kapak</figcaption></figure></div>
+                <div class="xsplus">
+<a href="https://audio1.syok.my/astro-sinar-jiwang" title="Sinar Jiwang"><figure><img style="border-radius:50%" class="poster" height="100px" src="https://media2.fishtank.my/stations/sinar-jiwang/080224/square_md.png" width="100px"/></a><figcaption>Sinar Jiwang</figcaption></figure></div>
+                <div class="xsplus">
+<a href="https://audio1.syok.my/astro-sinar-70" title="Sinar Irama 70"><figure><img style="border-radius:50%" class="poster" height="100px" src="https://media2.fishtank.my/stations/sinar-irama70/080224/square_md.png" width="100px"/></a><figcaption>Sinar Irama 70'</figcaption></figure></div>
+                <div class="xsplus">
+<a href="https://audio1.syok.my/astro-sinar-80" title="Sinar Irama 80"><figure><img style="border-radius:50%" class="poster" height="100px" src="https://media2.fishtank.my/stations/sinar-irama80/080224/square_md.png" width="100px"/></a><figcaption>Sinar Irama 80'</figcaption></figure></div>
+                <div class="xsplus">
+<a href="https://audio1.syok.my/astro-sinar-iramalaysia" title="Sinar Irama Malaysia"><figure><img style="border-radius:50%" class="poster" height="100px" src="https://media2.fishtank.my/stations/sinar-iramalaysia/080224/square_md.png" width="100px"/></a><figcaption>Sinar Irama Malaysia</figcaption></figure></div>
+                <div class="xsplus">
+<a href="https://audio1.syok.my/astro-sinar-imusik" title="Sinar I-Musik"><figure><img style="border-radius:50%" class="poster" height="100px" src="https://media2.fishtank.my/stations/sinar-imusik/080224/square_md.png" width="100px"/></a><figcaption>Sinar I-Musik</figcaption></figure></div>
+                <div class="xsplus">
+<a href="https://audio1.syok.my/astro-sinar-sinema" title="Sinar Sinema"><figure><img style="border-radius:50%" class="poster" height="100px" src="https://media2.fishtank.my/stations/sinar-sinema/080224/square_md.png" width="100px"/></a><figcaption>Sinar Sinema</figcaption></figure></div>
+                <div class="xsplus">
+<a href="https://audio1.syok.my/astro-sinar-popyehyeh" title="Sinar Pop Yeh-Yeh"><figure><img style="border-radius:50%" class="poster" height="100px" src="https://media2.fishtank.my/stations/sinar-popyehyeh/080224/square_md.png" width="100px"/></a><figcaption>Sinar Pop Yeh-Yeh</figcaption></figure></div>
+
+<h1 style="color:yellow;font-size:20px;text-shadow: 2px 2px red;">HITZ Live</h1>
+                <div class="xsplus">
+<a href="https://audio1.syok.my/hitz" title="HITZ FM"><figure><img style="border-radius:50%" class="poster" height="100px" src="https://media2.fishtank.my/stations/hitz/square_md.jpg" width="100px"/></a><figcaption>HITZ FM</figcaption></figure></div>
+                <div class="xsplus">
+<a href="https://audio1.syok.my/astro-hitz-tiktok" title="HITZ Tik-Tok"><figure><img style="border-radius:50%" class="poster" height="100px" src="https://media2.fishtank.my/stations/hitz_tiktok/021023/square_md.png" width="100px"/></a><figcaption>HITZ Tik-Tok</figcaption></figure></div>
+                <div class="xsplus">
+<a href="https://audio1.syok.my/astro-hitz-dance" title="HITZ Dance"><figure><img style="border-radius:50%" class="poster" height="100px" src="https://media2.fishtank.my/stations/hitz-dance/021023/sqaure_md.png" width="100px"/></a><figcaption>HITZ Dance</figcaption></figure></div>
+                <div class="xsplus">
+<a href="https://audio1.syok.my/astro-hitz-urban" title="HITZ Urban"><figure><img style="border-radius:50%" class="poster" height="100px" src="https://media2.fishtank.my/stations/hitz_urban/021023/square_md.png" width="100px"/></a><figcaption>HITZ Urban</figcaption></figure></div>
+                <div class="xsplus">
+<a href="https://audio1.syok.my/astro-hitz-top40" title="HITZ Top 40"><figure><img style="border-radius:50%" class="poster" height="100px" src="https://media2.fishtank.my/stations/hitz-top40/021023/square_md.png" width="100px"/></a><figcaption>HITZ Top 40</figcaption></figure></div>
+                <div class="xsplus">
+<a href="https://audio1.syok.my/astro-hitz-throwback" title="HITZ Throwback"><figure><img style="border-radius:50%" class="poster" height="100px" src="https://media2.fishtank.my/stations/hitz_throwback/021023/square_md.png" width="100px"/></a><figcaption>HITZ Throwback</figcaption></figure></div>
+                <div class="xsplus">
+<a href="https://audio1.syok.my/astro-hitz-chillest" title="HITZ Chillest"><figure><img style="border-radius:50%" class="poster" height="100px" src="https://media2.fishtank.my/stations/hitz_chillest/021023/square_md.png" width="100px"/></a><figcaption>HITZ Chillest</figcaption></figure></div>
+                <div class="xsplus">
+<a href="https://audio1.syok.my/astro-hitz-kpop" title="HITZ K-Pop"><figure><img style="border-radius:50%" class="poster" height="100px" src="https://media2.fishtank.my/stations/hitz_kpop/021023/square_md.png" width="100px"/></a><figcaption>HITZ K-Pop</figcaption></figure></div>
+                <div class="xsplus">
+<a href="https://audio1.syok.my/astro-hitz-local" title="HITZ Local"><figure><img style="border-radius:50%" class="poster" height="100px" src="https://media2.fishtank.my/stations/hitz-local/021023/square_md.png" width="100px"/></a><figcaption>HITZ Local</figcaption></figure></div>
+
+<h1 style="color:yellow;font-size:20px;text-shadow: 2px 2px red;">MIX Live</h1>
+                <div class="xsplus">
+<a href="https://audio1.syok.my/mix" title="MIX FM"><figure><img style="border-radius:50%" class="poster" height="100px" src="https://media2.fishtank.my/stations/hitz/square_md.jpg" width="100px"/></a><figcaption>Mix FM</figcaption></figure></div>
+                <div class="xsplus">
+<a href="https://audio1.syok.my/astro-mix-2000" title="MIX 2000s"><figure><img style="border-radius:50%" class="poster" height="100px" src="https://media2.fishtank.my/stations/mix-2000/080224/square_md.png" width="100px"/></a><figcaption>Mix 2000s</figcaption></figure></div>
+                <div class="xsplus">
+<a href="https://audio1.syok.my/astro-mix-90" title="MIX 90s"><figure><img style="border-radius:50%" class="poster" height="100px" src="https://media2.fishtank.my/stations/mix-tape/080224/square_md.png" width="100px"/></a><figcaption>Mix 90s Mix Tape</figcaption></figure></div>
+                <div class="xsplus">
+<a href="https://audio1.syok.my/astro-mix-lovesongs" title="MIX Love Songs"><figure><img style="border-radius:50%" class="poster" height="100px" src="https://media2.fishtank.my/stations/mix-lovesongs/080224/square_md.png" width="100px"/></a><figcaption>Mix Love Songs</figcaption></figure></div>
+
+<h1 style="color:yellow;font-size:20px;text-shadow: 2px 2px red;">Lite Live</h1>
+                <div class="xsplus">
+<a href="https://audio1.syok.my/lite" title="Lite FM"><figure><img style="border-radius:50%" class="poster" height="100px" src="https://media2.fishtank.my/stations/lite/square_md.jpg" width="100px"/></a><figcaption>Lite FM</figcaption></figure></div>
+                <div class="xsplus">
+<a href="https://audio1.syok.my/astro-lite-70and80" title="Lite 70s & 80s"><figure><img style="border-radius:50%" class="poster" height="100px" src="https://media2.fishtank.my/stations/lite-7080/080224/square_md.png" width="100px"/></a><figcaption>Lite 70s & 80s</figcaption></figure></div>
+                <div class="xsplus">
+<a href="https://audio1.syok.my/astro-lite-lovesongs" title="Lite Lovesongs"><figure><img style="border-radius:50%" class="poster" height="100px" src="https://media2.fishtank.my/stations/lite-lovesongs/080224/square_md.png" width="100px"/></a><figcaption>Lite Lovesongs</figcaption></figure></div>
+                <div class="xsplus">
+<a href="https://audio1.syok.my/astro-lite-acoustic" title="Lite Acoustic"><figure><img style="border-radius:50%" class="poster" height="100px" src="https://media2.fishtank.my/stations/lite-acoustic/080224/square_md.png" width="100px"/></a><figcaption>Lite Acoustic</figcaption></figure></div>
+
+
+<h1 style="color:yellow;font-size:20px;text-shadow: 2px 2px red;">Gegar Live</h1>
+                <div class="xsplus">
+<a href="https://audio1.syok.my/gegar" title="Gegar FM"><figure><img style="border-radius:50%" class="poster" height="100px" src="https://media2.fishtank.my/stations/gegar/square_md.jpg" width="100px"/></a><figcaption>Gegar FM</figcaption></figure></div>
+                <div class="xsplus">
+<a href="https://audio1.syok.my/astro-gegar-hindi" title="Gegar Hindi Power"><figure><img style="border-radius:50%" class="poster" height="100px" src="https://media2.fishtank.my/stations/gegar_hindi/080224/square_md.png" width="100px"/></a><figcaption>Gegar Hindi Power</figcaption></figure></div>
+                <div class="xsplus">
+<a href="https://audio1.syok.my/astro-gegar-tradisi" title="Gegar Tradisi"><figure><img style="border-radius:50%" class="poster" height="100px" src="https://media2.fishtank.my/stations/gegar_tradisi/080224/square_md.png" width="100px"/></a><figcaption>Gegar Tradisi</figcaption></figure></div>
+                <div class="xsplus">
+<a href="https://audio1.syok.my/astro-gegar-hohbtabuh" title="Gegar Hoh Btabuh"><figure><img style="border-radius:50%" class="poster" height="100px" src="https://media2.fishtank.my/stations/gegar_hohbtabuh/080224/square_md.png" width="100px"/></a><figcaption>Gegar Hoh Btabuh</figcaption></figure></div>
+                <div class="xsplus">
+<a href="https://audio1.syok.my/astro-gegar-maghigelek" title="Gegar Maghi Gelek"><figure><img style="border-radius:50%" class="poster" height="100px" src="https://media2.fishtank.my/stations/gegar_maghigelek/080224/square_md.png" width="100px"/></a><figcaption>Gegar Maghi Gelek</figcaption></figure></div>
+
+<h1 style="color:yellow;font-size:20px;text-shadow: 2px 2px red;">Zayan Live</h1>
+                <div class="xsplus">
+<a href="https://audio1.syok.my/zayan" title="Zayan FM"><figure><img style="border-radius:50%" class="poster" height="100px" src="https://media2.fishtank.my/stations/zayan/square_md.jpg" width="100px"/></a><figcaption>Zayan FM</figcaption></figure></div>
+                <div class="xsplus">
+<a href="https://audio1.syok.my/astro-zayan-nasyeed" title="Zayan Nasyeed"><figure><img style="border-radius:50%" class="poster" height="100px" src="https://media2.fishtank.my/stations/zayan-nasyeed/080224/square_md.png" width="100px"/></a><figcaption>Zayan Nasyeed</figcaption></figure></div>
+                <div class="xsplus">
+<a href="https://audio1.syok.my/astro-zayan-surah" title="Zayan Surah"><figure><img style="border-radius:50%" class="poster" height="100px" src="https://media2.fishtank.my/stations/zayan-surah/080224/square_md.png" width="100px"/></a><figcaption>Zayan Surah</figcaption></figure></div>
+                <div class="xsplus">
+<a href="https://audio1.syok.my/astro-zayan-adam" title="Zayan Adam"><figure><img style="border-radius:50%" class="poster" height="100px" src="https://media2.fishtank.my/stations/zayan-adam/080224/square_md.png" width="100px"/></a><figcaption>Zayan Adam</figcaption></figure></div>
+                <div class="xsplus">
+<a href="https://audio1.syok.my/astro-zayan-hawa" title="Zayan Hawa"><figure><img style="border-radius:50%" class="poster" height="100px" src="https://media2.fishtank.my/stations/zayan-hawa/080224/square_md.png" width="100px"/></a><figcaption>Zayan Hawa</figcaption></figure></div>
+                <div class="xsplus">
+<a href="https://audio1.syok.my/astro-zayan-terjemah" title="Zayan Terjemah"><figure><img style="border-radius:50%" class="poster" height="100px" src="https://media2.fishtank.my/stations/zayan-terjemah/080224/square_md.png" width="100px"/></a><figcaption>Zayan Terjemah</figcaption></figure></div>
+
+</div></div></div></center><br><br>
+
+</body>
+</html>
