@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<!-- https://t.me/htmlcoding_html_coding_free -->
+
+<meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+
+<!-- STYLES -->
+	
+<style type="text/css">
+@import url('https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+*,
+*::after,
+*::before {
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Fira Sans', sans-serif;
+  background-image: url('https://www.nawpic.com/media/2020/80s-nawpic-9.jpg');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+  background-size: cover;
+}
+
+section {
+  max-width: 576px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+header {
+  text-align: center;
+  margin: 0rem 0 0 0;
+}
+
+header img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+}
+
+header h3 {
+  color: #fff;
+  margin: 1px 0 1px 0;
+}
+
+header p {
+  color: #fff;
+}
+
+label {
+  color: #ffff00;
+  border-bottom: 4px solid crimson;
+  margin-left: 2rem;
+  width: fit-content;
+  padding: 0 0.25rem;
+  margin-top: 1rem;
+  display: block;
+}
+
+ul {
+  background-color: #fff;
+  flex: 1;
+  overflow-y: auto;
+  padding: 1.0rem 0.5rem 0 0.5rem;
+}
+
+ul li {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #000;
+  margin-bottom: 15px;
+  padding-bottom: 0.5rem;
+}
+
+.track-img {
+  width: 50px;
+  height: 50px;
+  margin-right: 10px;
+}
+
+.track-number {
+  color: #000;
+  margin-right: 10px;
+}
+
+.track-detail_name {
+  color: #000;
+}
+
+.track-detail_desc {
+  color: #cc0000;
+}
+
+footer {
+  background-color: #000;
+  padding: 0 0.25rem 0.25rem 0.25rem;
+}
+
+.slider {
+  background-color: #000;
+  border-radius: 8px;
+  cursor: pointer;
+  height: 2px;
+  position: relative;
+  width: 100%;
+}
+
+.slider-progress {
+  background-color: crimson;
+  height: 100%;
+  pointer-events: none;
+  position: absolute;
+  width: 0%;
+}
+.slider-pin {
+  background-color: #fff;
+  border-radius: 8px;
+  height: 8px;
+  position: absolute;
+  pointer-events: all;
+  right: -5px;
+  top: -2px;
+  width: 8px;
+  box-shadow: (20px 20px 20px 20px rgba(0, 0, 0, 0.32));
+  transition: (transform 0.25s ease);
+}
+
+.count {
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.8rem;
+  margin: 3px 0 1rem 0;
+  font-weight: bold;
+}
+
+.event {
+  color:#fff;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+</style></head>
+
+<body><section>
+	
+<!-- CURRENT PLAYING HEADER -->
+	
+<header>
+<img src="https://i.ibb.co/FBM95gv/RRIcon.png" alt="playing-cover"/>
+<h3>Track Name</h3>
+<p>Track desc</p>
+</header>
+
+<!-- PLAYLIST LABEL-->
+	
+<label>Radio Stations</label>
+
+<!-- TRACK LIST -->
+	
+<ul></ul>
+
+<!-- MUSIC CONTROLS -->
+	
+<footer>
+	
+<!-- SLIDER -->
+	
+<div class="slider">
+<div class="slider-progress">
+<div class="slider-pin"></div>
+</div></div>
+
+<!-- COUNT -->
+	
+<div class="count">
+<span class="count-current">00:01</span>
+<span class="count-final">11:23</span>
+</div>
+
+<!-- EVENTS -->
+	
+<div class="event">
+<i class="fas fa-caret-left event-prev"></i>
+<i class="fas fa-play event-playPause"></i>
+<i class="fas fa-caret-right event-next"></i>
+<i class="fas fa-volume-up event-muteUnmute"></i>
+
+</div></footer></section>
+
+<audio src="" id="audio"></audio>
+<!-- https://t.me/htmlcoding_html_coding_free -->
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', function () {
+  const tracksList = [
+    {
+      audioSrc:
+        'https://19763.live.streamtheworld.com/977_OLDIES_SC',
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRIcon.png',
+      name: '.977 50s, 60s Hits',
+      desc: 'All Time Hits',
+      id: 1,
+    },
+    {
+      audioSrc:
+        'http://listen.011fm.com:8004/stream03',
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRIcon.png',
+      name: '011FM Non Stop 60s',
+      desc: 'All Time Hits',
+      id: 20,
+    },
+    {
+      audioSrc:
+        'http://listen.011fm.com:8006/stream04',
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRIcon.png',
+      name: '011FM Retro 70s',
+      desc: 'All Time Hits',
+      id: 21,
+    },
+    {
+      audioSrc:
+        'http://listen.181fm.com/181-70s_128k.mp3',
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRIcon.png',
+      name: '181.fm - Super 70s',
+      desc: 'All Time Hits',
+      id: 59,
+    },
+	
+    {
+      audioSrc:
+        'https://media-ssl.musicradio.com/Heart70s',				
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRRIcon.png',			
+      name: 'Heart 70s',				
+      desc: 'All Time Hits',				
+      id: 29,				
+    },
+    {
+      audioSrc:
+        'https://17333.live.streamtheworld.com/977_CLASSROCK_SC',
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRIcon.png',
+      name: '.977 70s 80s Rock',
+      desc: 'All Time Hits',
+      id: 2,
+    },	
+    {
+      audioSrc:
+        'https://media-ice.musicradio.com/Heart80sMP3',				
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRRIcon.png',			
+      name: 'Heart 80s',				
+      desc: 'All Time Hits',				
+      id: 5,				
+    },
+    {
+      audioSrc:
+        'http://sc-80s.1.fm:8097/',
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRIcon.png',
+      name: '1.FM - All Euro 80s Radio',
+      desc: 'All Time Hits',
+      id: 19,
+    },
+    {
+      audioSrc:
+        'https://strm112.1.fm/back280s_mobile_mp3',
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRIcon.png',
+      name: '1.FM - Back to the 80s: Playlist',
+      desc: 'All Time Hits',
+      id: 20,
+    },	
+    {
+      audioSrc:
+        'http://51.255.127.128:8016/stream',				
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRRIcon.png',			
+      name: 'The Mix Radio 80s',				
+      desc: 'All Time Hits',				
+      id: 16,				
+    },
+    {
+      audioSrc:
+        'https://usa19.fastcast4u.com/unlimited80s',				
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRRIcon.png',			
+      name: '70s 80s All Time Greatest',				
+      desc: 'All Time Hits',				
+      id: 22,				
+    },
+    {
+      audioSrc:
+        'https://stream1.themediasite.co.uk:7018/stream',				
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRRIcon.png',			
+      name: 'Love 80s - Manchester',				
+      desc: 'All Time Hits',				
+      id: 40,				
+    },
+    {
+      audioSrc:
+        'https://16963.live.streamtheworld.com/SAM03AAC226_SC',				
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRRIcon.png',			
+      name: '80s Radio',				
+      desc: 'All Time Hits',				
+      id: 58,				
+    },
+    {
+      audioSrc:
+        'http://rss-streaming.co.uk:8062/;',				
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRRIcon.png',			
+      name: 'Love 80s - Liverpool',				
+      desc: 'All Time Hits',				
+      id: 64,				
+    },
+    {
+      audioSrc:
+        'http://listen.181fm.com/181-80scountry_128k.mp3',
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRIcon.png',
+      name: '181.fm - 80s Country',
+      desc: 'All Time Hits',
+      id: 83,
+    },
+    {
+      audioSrc:
+        'http://listen.011fm.com:8008/stream05',
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRIcon.png',
+      name: '011FM Big 80s',
+      desc: 'All Time Hits',
+      id: 10,
+    },
+    {
+      audioSrc:
+        'http://streaming.radionomy.com/JamendoLounge?lang=en-US%2cen%3bq%3d0.5',
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRIcon.png',
+      name: '1 Pure 80s Radio',
+      desc: 'All Time Hits',
+      id: 29,
+    },
+    {
+      audioSrc:
+        'http://s1.nexuscast.com:8135/;',
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRIcon.png',
+      name: 'Back To The 80s',
+      desc: 'All Time Hits',
+      id: 41,
+    },
+    {
+      audioSrc:
+        'https://stream.open.fm//3',
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRIcon.png',
+      name: 'OpenFM - 80s Hits',
+      desc: 'All Time Hits',
+      id: 36,
+    },	
+    {
+      audioSrc:
+        'https://listen.181fm.com/181-hairband_128k.mp3',
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRIcon.png',
+      name: '181.fm - 80s Hairband',
+      desc: 'All Time Hits',
+      id: 46,
+    },
+    {
+      audioSrc:
+        'https://listen.181fm.com/181-awesome80s_128k.mp3',
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRIcon.png',
+      name: '181.fm - Awesome 80s',
+      desc: 'All Time Hits',
+      id: 47,
+    },
+    {
+      audioSrc:
+        'http://listen.181fm.com/181-80srnb_128k.mp3',
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRIcon.png',
+      name: '181.fm - 80s RnB',
+      desc: 'All Time Hits',
+      id: 49,
+    },
+    {
+      audioSrc:
+        'http://listen.181fm.com/181-80sliternb_128k.mp3',
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRIcon.png',
+      name: '181.fm - 80s RnB Lite',
+      desc: 'All Time Hits',
+      id: 50,
+    },
+    {
+      audioSrc:
+        'http://listen.181fm.com/181-80scountry_128k.mp3',
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRIcon.png',
+      name: '181.fm - 80s Country',
+      desc: 'All Time Hits',
+      id: 83,
+    },
+    {
+      audioSrc:
+        'http://listen.011fm.com:8010/stream06',
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRIcon.png',
+      name: '011FM Totally 90s',
+      desc: 'All Time Hits',
+      id: 26,
+    },
+    {
+      audioSrc:
+        'http://listen.181fm.com/181-90srnb_128k.mp3',
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRIcon.png',
+      name: '181.fm - 90s RnB',
+      desc: 'All Time Hits',
+      id: 52,
+    },
+    {
+      audioSrc:
+        'http://listen.181fm.com/181-90sliternb_128k.mp3',
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRIcon.png',
+      name: '181.fm - Lite 90s RnB',
+      desc: 'All Time Hits',
+      id: 53,
+    },
+    {
+      audioSrc:
+        'http://listen.181fm.com/181-90scountry_128k.mp3',
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRIcon.png',
+      name: '181.fm - 90s Country',
+      desc: 'All Time Hits',
+      id: 60,
+    },
+    {
+      audioSrc:
+        'http://listen.181fm.com/181-lite90s_128k.mp3',
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRIcon.png',
+      name: '181.fm - Lite 90s',
+      desc: 'All Time Hits',
+      id: 61,
+    },
+    {
+      audioSrc:
+        'http://listen.181fm.com/181-90salt_128k.mp3',
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRIcon.png',
+      name: '181.fm - 90s Alternative',
+      desc: 'All Time Hits',
+      id: 62,
+    },
+    {
+      audioSrc:
+        'http://listen.181fm.com/181-90sdance_128k.mp3',
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRIcon.png',
+      name: '181.fm - 90s Dance',
+      desc: 'All Time Hits',
+      id: 63,
+    },
+    {
+      audioSrc:
+        'http://listen.011fm.com:8032/stream17?cb=629564.mp3',
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRIcon.png',
+      name: '011FM 90s Alternative',
+      desc: 'All Time Hits',
+      id: 7,
+    },
+    {
+      audioSrc:
+        'http://listen.011fm.com:8018/stream10',
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRIcon.png',
+      name: '011FM 90s Country',
+      desc: 'All Time Hits',
+      id: 8,
+    },	
+    {
+      audioSrc:
+        'https://media-ssl.musicradio.com/Heart90s',				
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRRIcon.png',			
+      name: 'Heart 90s',				
+      desc: 'All Time Hits',				
+      id: 20,				
+    },
+    {
+      audioSrc:
+        'https://19763.live.streamtheworld.com/977_90_SC',
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRIcon.png',
+      name: '.977 90’s Hits',
+      desc: 'All Time Hits',
+      id: 3,
+    },
+    {
+      audioSrc:
+        'https://stream.open.fm/14',
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRIcon.png',
+      name: 'OpenFM - 90s Hits',
+      desc: 'All Time Hits',
+      id: 37,
+    },
+    {
+      audioSrc:
+        'https://stream.open.fm/72',
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRIcon.png',
+      name: 'OpenFM - 00s Hits',
+      desc: 'All Time Hits',
+      id: 38,
+    },	
+  ];
+
+  const currentTrackName = document.querySelector('header h3');
+  const currentTrackDesc = document.querySelector('header p');
+  const currentTrackCover = document.querySelector('header img');
+  const currentTrackAudio = document.querySelector('audio');
+  const playPauseBtn = document.querySelector('.event-playPause');
+  const muteUnmuteBtn = document.querySelector('.event-muteUnmute');
+  const playNextBtn = document.querySelector('.event-next');
+  const playPrevBtn = document.querySelector('.event-prev');
+  const progress = document.querySelector('.slider-progress');
+  const currentTrackTime = document.querySelector('.count-current');
+  const finalTrackTime = document.querySelector('.count-final');
+  // ADD TRACKS TO MY PLAYLIST ON PAGE LOAD
+  (function addMyTracksList() {
+    for (let track of tracksList) {
+      var li = document.createElement('li');
+      li.id = track.id;
+      li.innerHTML = `
+                    <div class="track-number">0${track.id}</div>
+                    <img
+                    src=${track.coverSrc}
+                    class="track-img"
+                    alt=""
+                    />
+
+                    <div class="track-detail">
+                    <div class="track-detail_name">${track.name}</div>
+                    <div class="track-detail_desc">
+                        <small>${track.desc}</small>
+                    </div>
+                    </div>
+        `;
+      document.querySelector('ul').appendChild(li);
+      (function (id) {
+        li.addEventListener(
+          'click',
+          () => {
+            playSelectedTrack(id);
+          },
+          false
+        );
+      })(track.id);
+    }
+  })();
+
+  let trackId = 1;
+
+  const loadTrack = (songId) => {
+    const song = tracksList.find((track) => track.id === songId);
+
+    const { audioSrc, coverSrc, name, desc } = song;
+    currentTrackName.innerText = name;
+    currentTrackDesc.innerText = desc;
+    currentTrackAudio.src = audioSrc;
+    currentTrackCover.src = coverSrc;
+  };
+
+  const playSelectedTrack = (songId) => {
+    trackId = songId;
+    loadTrack(songId);
+    playTrack();
+  };
+
+  loadTrack(trackId);
+
+  const playTrack = () => {
+    playPauseBtn.classList.remove('fa-play');
+    playPauseBtn.classList.add('fa-pause');
+
+    currentTrackAudio.play();
+  };
+
+  const pauseTrack = () => {
+    playPauseBtn.classList.remove('fa-pause');
+    playPauseBtn.classList.add('fa-play');
+
+    currentTrackAudio.pause();
+  };
+
+  const playPrevTrack = () => {
+    trackId--;
+
+    if (trackId < 0) {
+      trackId = tracksList.length - 1;
+    }
+    loadTrack(trackId);
+    playTrack();
+  };
+
+  const playNextTrack = () => {
+    trackId++;
+    if (trackId > tracksList.length - 1) {
+      trackId = 0;
+    }
+    loadTrack(trackId);
+    playTrack();
+  };
+
+  const updateProgress = () => {
+    const currentTime = currentTrackAudio.currentTime;
+    const trackDuration = currentTrackAudio.duration;
+    const percent = (currentTime / trackDuration) * 100;
+    progress.style.width = percent + '%';
+    let curMins = Math.floor(currentTime / 60);
+    let curSecs = Math.floor(currentTime - curMins * 60);
+    let durMins = Math.floor(trackDuration / 60) || '--';
+    let durSecs = Math.floor(trackDuration - durMins * 60) || '--';
+
+    if (curMins < 10) {
+      curMins = `0${curMins}`;
+    }
+    if (curSecs < 10) {
+      curSecs = `0${curSecs}`;
+    }
+    if (durMins < 10) {
+      durMins = `0${durMins}`;
+    }
+    if (durSecs < 10) {
+      durSecs = `0${durSecs}`;
+    }
+
+    currentTrackTime.innerText = `${curMins}:${curSecs}`;
+    finalTrackTime.innerText = `${durMins}:${durSecs}`;
+  };
+
+  const muteUnmuteTrack = () => {
+    if (currentTrackAudio.muted) {
+      currentTrackAudio.muted = false;
+      muteUnmuteBtn.classList.remove('fa-volume-mute');
+      muteUnmuteBtn.classList.add('fa-volume-up');
+    } else {
+      currentTrackAudio.muted = true;
+      muteUnmuteBtn.classList.remove('fa-volume-up');
+      muteUnmuteBtn.classList.add('fa-volume-mute');
+    }
+  };
+
+  playPauseBtn.addEventListener('click', () => {
+    const currentlyPlaying = playPauseBtn.classList.contains('fa-pause');
+
+    currentlyPlaying ? pauseTrack() : playTrack();
+  });
+  muteUnmuteBtn.addEventListener('click', () => muteUnmuteTrack());
+
+  playPrevBtn.addEventListener('click', () => playPrevTrack());
+  playNextBtn.addEventListener('click', () => playNextTrack());
+
+  currentTrackAudio.addEventListener('timeupdate', () => updateProgress());
+});
+</script></body></html><!-- https://t.me/htmlcoding_html_coding_free -->
