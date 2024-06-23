@@ -1,0 +1,999 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<!-- https://t.me/htmlcoding_html_coding_free -->
+
+<meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+
+<!-- STYLES -->
+	
+<style type="text/css">
+@import url('https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+*,
+*::after,
+*::before {
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Fira Sans', sans-serif;
+  background-image: url('https://i.ibb.co/0cthWpg/wallmy.jpg');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+  background-size: cover;
+}
+
+section {
+  max-width: 576px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+header {
+  text-align: center;
+  margin: 0rem 0 0 0;
+}
+
+header img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+}
+
+header h3 {
+  color: #fff;
+  margin: 1px 0 1px 0;
+}
+
+header p {
+  color: #fff;
+}
+
+label {
+  color: #ffff00;
+  border-bottom: 4px solid crimson;
+  margin-left: 2rem;
+  width: fit-content;
+  padding: 0 0.25rem;
+  margin-top: 1rem;
+  display: block;
+}
+
+ul {
+  background-color: #fff;
+  flex: 1;
+  overflow-y: auto;
+  padding: 1.0rem 0.5rem 0 0.5rem;
+}
+
+ul li {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #000;
+  margin-bottom: 15px;
+  padding-bottom: 0.5rem;
+}
+
+.track-img {
+  width: 50px;
+  height: 50px;
+  margin-right: 10px;
+}
+
+.track-number {
+  color: #000;
+  margin-right: 10px;
+}
+
+.track-detail_name {
+  color: #000;
+}
+
+.track-detail_desc {
+  color: #0000ff;
+}
+
+footer {
+  background-color: #000;
+  padding: 0 0.25rem 0.25rem 0.25rem;
+}
+
+.slider {
+  background-color: #000;
+  border-radius: 8px;
+  cursor: pointer;
+  height: 2px;
+  position: relative;
+  width: 100%;
+}
+
+.slider-progress {
+  background-color: crimson;
+  height: 100%;
+  pointer-events: none;
+  position: absolute;
+  width: 0%;
+}
+.slider-pin {
+  background-color: #fff;
+  border-radius: 8px;
+  height: 8px;
+  position: absolute;
+  pointer-events: all;
+  right: -5px;
+  top: -2px;
+  width: 8px;
+  box-shadow: (20px 20px 20px 20px rgba(0, 0, 0, 0.32));
+  transition: (transform 0.25s ease);
+}
+
+.count {
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.8rem;
+  margin: 3px 0 1rem 0;
+  font-weight: bold;
+}
+
+.event {
+  color:#fff;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+</style></head>
+
+<body><section>
+	
+<!-- CURRENT PLAYING HEADER -->
+	
+<header>
+<img src="https://i.ibb.co/FBM95gv/RRIcon.png" alt="playing-cover"/>
+<h3>Track Name</h3>
+<p>Track desc</p>
+</header>
+
+<!-- PLAYLIST LABEL-->
+	
+<label>Radio Stations</label>
+
+<!-- TRACK LIST -->
+	
+<ul></ul>
+
+<!-- MUSIC CONTROLS -->
+	
+<footer>
+	
+<!-- SLIDER -->
+	
+<div class="slider">
+<div class="slider-progress">
+<div class="slider-pin"></div>
+</div></div>
+
+<!-- COUNT -->
+	
+<div class="count">
+<span class="count-current">00:01</span>
+<span class="count-final">11:23</span>
+</div>
+
+<!-- EVENTS -->
+	
+<div class="event">
+<i class="fas fa-caret-left event-prev"></i>
+<i class="fas fa-play event-playPause"></i>
+<i class="fas fa-caret-right event-next"></i>
+<i class="fas fa-volume-up event-muteUnmute"></i>
+
+</div></footer></section>
+
+<audio src="" id="audio"></audio>
+<!-- https://t.me/htmlcoding_html_coding_free -->
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', function () {
+  const tracksList = [
+    {
+      audioSrc:
+        'https://cast3.asurahosting.com/proxy/myfriend/stream',
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRIcon.png',
+      name: 'MyFriend FM',
+      desc: 'Malaysia',
+      id: 1,
+    },
+    {
+      audioSrc:
+        'https://n11.rcs.revma.com/crec9cmbv4uvv.m4a?rj-ttl=4&rj-tok=AAABjiEVVN0AHEbcYw0Z9R3HrA',
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRIcon.png',
+      name: 'Era FM',
+      desc: 'Malaysia',
+      id: 2,
+    },
+    {
+      audioSrc:
+        'https://n04.rcs.revma.com/azatk0tbv4uvv.m4a?rj-ttl=5&rj-tok=AAABjiEWTzEAUORi_Mi-JSmlwA',
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRIcon.png',
+      name: 'Sinar FM',
+      desc: 'Malaysia',
+      id: 3,
+    },
+    {
+      audioSrc:
+        'https://n04.rcs.revma.com/488kt4sbv4uvv.m4a?rj-ttl=5&rj-tok=AAABjiEXTjEApWyAPVabn2GZHg',
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRIcon.png',
+      name: 'Hitz FM',
+      desc: 'Malaysia',
+      id: 4,
+    },
+    {
+      audioSrc:
+        'https://n11.rcs.revma.com/cn0zcqsbv4uvv.m4a?rj-ttl=5&rj-tok=AAABjiEYKEAAxfYKSAdckNgedQ',
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRIcon.png',
+      name: 'THR Gegar',
+      desc: 'Malaysia',
+      id: 5,
+    }, 
+    {
+      audioSrc:
+        'https://n07.rcs.revma.com/fk3507vbv4uvv.m4a?rj-ttl=5&rj-tok=AAABjiEZGzgAVepAWl6Zj4aUoA',
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRIcon.png',
+      name: 'Classic Rock',
+      desc: 'Malaysia',
+      id: 6,
+    }, 
+    {
+      audioSrc:
+        'https://22273.live.streamtheworld.com/TRAXX_FMAAC.aac',
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRIcon.png',
+      name: 'Traxx FM',
+      desc: 'Malaysia',
+      id: 7,
+    },
+    {
+      audioSrc:
+        'https://n06.rcs.revma.com/ywpe7mqb54uvv.m4a?rj-ttl=5&rj-tok=AAABjiEa_VYAvy3M574rod8-_A',
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRIcon.png',
+      name: 'Syok Bayu',
+      desc: 'Malaysia',
+      id: 8,
+    },
+    {
+      audioSrc:
+        'https://23693.live.streamtheworld.com/NASIONAL_FMAAC_SC',
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRIcon.png',
+      name: 'Nasional FM',
+      desc: 'Malaysia',
+      id: 9,
+    },
+    {
+      audioSrc:
+        'https://n02.rcs.revma.com/c718dfvbv4uvv.m4a?rj-ttl=5&rj-tok=AAABjiEb9UMAbDwq8J1Wcu9Vkg',
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRIcon.png',
+      name: 'Syok Jazz',
+      desc: 'Malaysia',
+      id: 10,
+    },
+    {
+      audioSrc:
+        'https://n03.rcs.revma.com/bn4ex8sbv4uvv.m4a?rj-ttl=5&rj-tok=AAABjiEc3kgAKCJuCCtF7BQLyA',
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRIcon.png',
+      name: 'Lite FM',
+      desc: 'Malaysia',
+      id: 11,
+    }, 
+    {
+      audioSrc:
+        'https://n11.rcs.revma.com/2u1n6dtbv4uvv.m4a?rj-ttl=5&rj-tok=AAABjiEdh3kAMZTUL8oglXHyRw',
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRIcon.png',
+      name: 'Melody FM',
+      desc: 'Malaysia',
+      id: 12,
+    }, 
+    {
+      audioSrc:
+        'https://n13.rcs.revma.com/v5pq3htbv4uvv.m4a?rj-ttl=5&rj-tok=AAABjiEef-YA1k-jLEuVuwjvxQ',
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRIcon.png',
+      name: 'Mix FM',
+      desc: 'Malaysia',
+      id: 13,
+    }, 
+    {
+      audioSrc:
+        'https://n05.rcs.revma.com/hc3unrtbv4uvv.m4a?rj-ttl=5&rj-tok=AAABjiEfXFMAVoZfPCvCHCoOrQ',
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRIcon.png',
+      name: 'My FM',
+      desc: 'Malaysia',
+      id: 14,
+    }, 
+    {
+      audioSrc:
+        'https://n12.rcs.revma.com/aqvp4yvbv4uvv.m4a?rj-ttl=5&rj-tok=AAABjiEgUwUAqtWC4cTMZF7-PA',
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRIcon.png',
+      name: 'Opus',
+      desc: 'Malaysia',
+      id: 15,
+    },
+    {
+      audioSrc:
+        'https://n05.rcs.revma.com/1ut6qwtbv4uvv.m4a?rj-ttl=5&rj-tok=AAABjiEhZn0ANSKfrc9L8S4uFA',
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRIcon.png',
+      name: 'THR Raaga',
+      desc: 'Malaysia',
+      id: 16,
+    },
+    {
+      audioSrc:
+        'https://23693.live.streamtheworld.com/MINNAL_FMAAC_SC',
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRIcon.png',
+      name: 'Minnal FM',
+      desc: 'Malaysia',
+      id: 17,
+    },
+    {
+      audioSrc:
+        'https://n15.rcs.revma.com/fxq2n9tbv4uvv.m4a?rj-ttl=5&rj-tok=AAABjiEiLi8AwwZe1KfWJ9lrAg',
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRIcon.png',
+      name: 'Gold',
+      desc: 'Malaysia',
+      id: 18,
+    },
+    {
+      audioSrc:
+        'https://rlrockjiwang.radioca.st/stream',
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRIcon.png',
+      name: 'Radio Lagenda Rock Jiwang',
+      desc: 'Malaysia',
+      id: 19,
+    },
+    {
+      audioSrc:
+        'http://philae.shoutca.st:8418/stream',
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRIcon.png',
+      name: 'Radio Lagenda BBest',
+      desc: 'Malaysia',
+      id: 20,
+    }, 
+    {
+      audioSrc:
+        'http://curiosity.shoutca.st:6997/stream',
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRIcon.png',
+      name: 'Radio Lagenda Persona',
+      desc: 'Malaysia',
+      id: 21,
+    }, 
+    {
+      audioSrc:
+        'http://188.165.237.19:8366/stream',
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRIcon.png',
+      name: 'Radio Lagenda Retro',
+      desc: 'Malaysia',
+      id: 22,
+    }, 
+    {
+      audioSrc:
+        'http://procyon.shoutca.st:8346/;',
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRIcon.png',
+      name: 'Radio Lagenda Rock',
+      desc: 'Malaysia',
+      id: 23,
+    }, 
+    {
+      audioSrc:
+        'http://22273.live.streamtheworld.com/SURIA_FMAAC.aac',
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRIcon.png',
+      name: 'Suria FM',
+      desc: 'Malaysia',
+      id: 24,
+    },
+    {
+      audioSrc:
+        'https://23693.live.streamtheworld.com/RADIO_KLASIKAAC.aac',
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRIcon.png',
+      name: 'Klasik FM',
+      desc: 'Malaysia',
+      id: 25,
+    },
+    {
+      audioSrc:
+        'https://mediaprima.rastream.com/mediaprima-koolfm',
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRIcon.png',
+      name: 'Kool FM',
+      desc: 'Malaysia',
+      id: 26,
+    }, 
+    {
+      audioSrc:
+        'https://n08.rcs.revma.com/h34x4kgg9hhvv.m4a?rj-ttl=5&rj-tok=AAABgjV7zf8AeEOWkwltc_LYjA',
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRIcon.png',
+      name: 'Best FM 104',
+      desc: 'Malaysia',
+      id: 27,
+    },
+    {
+      audioSrc:
+        'http://185.109.169.80:8009/stream',
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRIcon.png',
+      name: 'Dunia Muzik FM',
+      desc: 'Malaysia',
+      id: 28,
+    },
+    {
+      audioSrc:
+        'http://mediaprima.rastream.com/mediaprima-flyfm.android',
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRIcon.png',
+      name: 'Fly FM',
+      desc: 'Malaysia',
+      id: 29,
+    },
+    {
+      audioSrc:
+        'http://nebula.shoutca.st:8098/stream',
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRIcon.png',
+      name: 'Havoc FM',
+      desc: 'Malaysia',
+      id: 30,
+    }, 
+    {
+      audioSrc:
+        'http://audri.rastream.com/amp-xfm_audri?type=.flv',
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRIcon.png',
+      name: 'XFresh FM',
+      desc: 'Malaysia',
+      id: 31,
+    }, 
+    {
+      audioSrc:
+        'http://cloud.tujuh.my:8073/stream',
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRIcon.png',
+      name: 'My Ummah FM',
+      desc: 'Malaysia',
+      id: 32,
+    }, 
+    {
+      audioSrc:
+        'https://mediaprima.rastream.com/mediaprima-onefm',
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRIcon.png',
+      name: 'One FM',
+      desc: 'Malaysia',
+      id: 33,
+    }, 
+    {
+      audioSrc:
+        'http://mediaprima.rastream.com/mediaprima-hotfm?awparams=companionads%3Atrue%3Btags%3Aradioactive%3Bstationid%3Amediaprima-hotfm&playerid=Hot%20FM_web&authtoken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJvaWQiOiJsYXlsaW8iLCJpYXQiOjE0NzkxMDQyNzY1MDUsImV4cCI6M',
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRIcon.png',
+      name: 'Hot FM',
+      desc: 'Malaysia',
+      id: 34,
+    }, 
+    {
+      audioSrc:
+        'https://22273.live.streamtheworld.com/PERAK_FMAAC_SC',
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRIcon.png',
+      name: 'Perak FM',
+      desc: 'Malaysia',
+      id: 35,
+    }, 
+    {
+      audioSrc:
+        'https://22243.live.streamtheworld.com/KEDAH_FMAAC_SC',
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRIcon.png',
+      name: 'Kedah FM',
+      desc: 'Malaysia',
+      id: 36,
+    }, 
+    {
+      audioSrc:
+        'https://22243.live.streamtheworld.com/TERENGGANU_FMAAC_SC',
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRIcon.png',
+      name: 'Terengganu FM',
+      desc: 'Malaysia',
+      id: 37,
+    }, 
+    {
+      audioSrc:
+        'https://22243.live.streamtheworld.com/KELANTAN_FMAAC_SC',
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRIcon.png',
+      name: 'Kelantan FM',
+      desc: 'Malaysia',
+      id: 38,
+    },
+    {
+      audioSrc:
+        'https://22243.live.streamtheworld.com/JOHOR_FMAAC_SC',
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRIcon.png',
+      name: 'Johor FM',
+      desc: 'Malaysia',
+      id: 40,
+    },
+    {
+      audioSrc:
+        'https://22243.live.streamtheworld.com/MUTIARA_FMAAC_SC',
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRIcon.png',
+      name: 'Mutiara FM',
+      desc: 'Malaysia',
+      id: 41,
+    },
+    {
+      audioSrc:
+        'https://22243.live.streamtheworld.com/MELAKA_FMAAC_SC',
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRIcon.png',
+      name: 'Melaka FM',
+      desc: 'Malaysia',
+      id: 42,
+    },
+    {
+      audioSrc:
+        'https://23733.live.streamtheworld.com/SELANGOR_FMAAC_SC',
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRIcon.png',
+      name: 'Selangor FM',
+      desc: 'Malaysia',
+      id: 43,
+    },
+    {
+      audioSrc:
+        'https://23693.live.streamtheworld.com/KL_FMAAC_SC',
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRIcon.png',
+      name: 'KL FM',
+      desc: 'Malaysia',
+      id: 44,
+    },
+    {
+      audioSrc:
+        'https://22273.live.streamtheworld.com/SABAH_VFMAAC_SC',
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRIcon.png',
+      name: 'SabahV FM',
+      desc: 'Malaysia',
+      id: 45,
+    },
+    {
+      audioSrc:
+        'https://22273.live.streamtheworld.com/SARAWAK_FMAAC_SC',
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRIcon.png',
+      name: 'Sarawak FM',
+      desc: 'Malaysia',
+      id: 46,
+    },
+    {
+      audioSrc:
+        'https://22273.live.streamtheworld.com/LABUAN_FMAAC_SC',
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRIcon.png',
+      name: 'Labuan FM',
+      desc: 'Malaysia',
+      id: 47,
+    },
+    {
+      audioSrc:
+        'https://22273.live.streamtheworld.com/PAHANG_FMAAC_SC',
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRIcon.png',
+      name: 'Pahang FM',
+      desc: 'Malaysia',
+      id: 48,
+    },
+    {
+      audioSrc:
+        'https://22273.live.streamtheworld.com/NEGERI_FMAAC_SC',
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRIcon.png',
+      name: 'Negeri FM',
+      desc: 'Malaysia',
+      id: 49,
+    },
+    {
+      audioSrc:
+        'https://22273.live.streamtheworld.com/PERLIS_FMAAC_SC',
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRIcon.png',
+      name: 'Perlis FM',
+      desc: 'Malaysia',
+      id: 50,
+    },
+    {
+      audioSrc:
+        'https://22273.live.streamtheworld.com/SABAH_FMAAC_SC',
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRIcon.png',
+      name: 'Sabah FM',
+      desc: 'Malaysia',
+      id: 51,
+    },
+    {
+      audioSrc:
+        'https://23733.live.streamtheworld.com/WAI_FM_IBANAAC_SC',
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRIcon.png',
+      name: 'WAI FM Iban',
+      desc: 'Malaysia',
+      id: 52,
+    },
+    {
+      audioSrc:
+        'https://23733.live.streamtheworld.com/WAI_FM_BIDAYUHAAC_SC',
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRIcon.png',
+      name: 'WAI FM Bidayuh',
+      desc: 'Malaysia',
+      id: 53,
+    },
+    {
+      audioSrc:
+        'https://23733.live.streamtheworld.com/RED_FMAAC_SC',
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRIcon.png',
+      name: 'RED FM',
+      desc: 'Malaysia',
+      id: 53,
+    },
+    {
+      audioSrc:
+        'https://23733.live.streamtheworld.com/WAI_FMAAC_SC',
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRIcon.png',
+      name: 'WAI FM',
+      desc: 'Malaysia',
+      id: 54,
+    },
+    {
+      audioSrc:
+        'https://23733.live.streamtheworld.com/LANGKAWI_FMAAC_SC',
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRIcon.png',
+      name: 'Langkawi FM',
+      desc: 'Malaysia',
+      id: 55,
+    },
+    {
+      audioSrc:
+        'https://23733.live.streamtheworld.com/LIMBANG_FMAAC_SC',
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRIcon.png',
+      name: 'Limbang FM',
+      desc: 'Malaysia',
+      id: 56,
+    },
+    {
+      audioSrc:
+        'https://23733.live.streamtheworld.com/MIRI_FMAAC_SC',
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRIcon.png',
+      name: 'Miri FM',
+      desc: 'Malaysia',
+      id: 57,
+    },
+    {
+      audioSrc:
+        'https://23733.live.streamtheworld.com/SRIAMAN_FMAAC_SC',
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRIcon.png',
+      name: 'Sri Aman FM',
+      desc: 'Malaysia',
+      id: 58,
+    },	
+    {
+      audioSrc:
+        'https://23733.live.streamtheworld.com/BINTULU_FMAAC_SC',
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRIcon.png',
+      name: 'Bintulu FM',
+      desc: 'Malaysia',
+      id: 59,
+    },
+    {
+      audioSrc:
+        'https://23733.live.streamtheworld.com/SIBU_FMAAC_SC',
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRIcon.png',
+      name: 'Sibu FM',
+      desc: 'Malaysia',
+      id: 60,
+    },
+    {
+      audioSrc:
+        'https://23733.live.streamtheworld.com/SANDAKAN_FMAAC_SC',
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRIcon.png',
+      name: 'Sandakan FM',
+      desc: 'Malaysia',
+      id: 61,
+    },
+    {
+      audioSrc:
+        'https://23733.live.streamtheworld.com/TAWAU_FMAAC_SC',
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRIcon.png',
+      name: 'Tawau FM',
+      desc: 'Malaysia',
+      id: 62,
+    },
+    {
+      audioSrc:
+        'https://23733.live.streamtheworld.com/KENINGAU_FMAAC_SC',
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRIcon.png',
+      name: 'Keningau FM',
+      desc: 'Malaysia',
+      id: 63,
+    },
+    {
+      audioSrc:
+        'https://23693.live.streamtheworld.com/ASYIK_FMAAC.aac',
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRIcon.png',
+      name: 'Asyik FM',
+      desc: 'Malaysia',
+      id: 64,
+    },
+    {
+      audioSrc:
+        'https://22273.live.streamtheworld.com/AI_FMAAC.aac',
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRIcon.png',
+      name: 'Ai FM',
+      desc: 'Malaysia',
+      id: 65,
+    },
+    {
+      audioSrc:
+        'https://stream.radio.co/s4c9c7e0cb/listen',
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRIcon.png',
+      name: 'Hijau FM',
+      desc: 'Malaysia',
+      id: 66,
+    },
+    {
+      audioSrc:
+        'https://n09.rcs.revma.com/nzgauqq1v7zuv?rj-ttl=5&rj-tok=AAABfuIn3_0A30R3somRxzqf-A',
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRIcon.png',
+      name: 'Manis FM',
+      desc: 'Malaysia',
+      id: 67,
+    },
+    {
+      audioSrc:
+        'https://radiorosak.radioca.st/stream',
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRIcon.png',
+      name: 'RadioRosak',
+      desc: 'Malaysia',
+      id: 68,
+    },
+    {
+      audioSrc:
+        'https://mediaprima.rastream.com/mediaprima-molekfm',
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRIcon.png',
+      name: 'Molek FM',
+      desc: 'Malaysia',
+      id: 69,
+    },
+	    {
+      audioSrc:
+        'https://n13a-eu.rcs.revma.com/1scz4dh811uvv.m4a?rj-ttl=5&rj-tok=AAABjiEmjBIAt8s9zldiojERQQ',
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRIcon.png',
+      name: 'Sinar Pop Yeh-Yeh',
+      desc: 'Malaysia',
+      id: 70,
+    },
+	    {
+      audioSrc:
+        'https://n25a-eu.rcs.revma.com/5s38zah811uvv.m4a?rj-ttl=5&rj-tok=AAABjiEmGZ4Ar9cDTXIboEcD5g',
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRIcon.png',
+      name: 'Sinar Jiwang',
+      desc: 'Malaysia',
+      id: 71,
+    },
+	    {
+      audioSrc:
+        'https://n05a-eu.rcs.revma.com/rz43weh811uvv.m4a?rj-ttl=5&rj-tok=AAABjiEly34A5BTWS8k6dzLAqA',
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRIcon.png',
+      name: 'Sinar Rock Kapak',
+      desc: 'Malaysia',
+      id: 72,
+    },
+	    {
+      audioSrc:
+        'https://n06a-eu.rcs.revma.com/bb4ey1g811uvv.m4a?rj-ttl=5&rj-tok=AAABjiEld4kA-aurkSVI0ARmbA',
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRIcon.png',
+      name: 'Sinar Irama 70',
+      desc: 'Malaysia',
+      id: 73,
+    },
+	    {
+      audioSrc:
+        'https://n18a-eu.rcs.revma.com/xdz7f5g811uvv.m4a?rj-ttl=5&rj-tok=AAABjiElJZoAASWVR5E2pIqJOw',
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRIcon.png',
+      name: 'Sinar Irama 80',
+      desc: 'Malaysia',
+      id: 74,
+    },
+	    {
+      audioSrc:
+        'https://mediaprima.rastream.com/mediaprima-koolfm',
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRIcon.png',
+      name: 'Kool 101',
+      desc: 'Malaysia',
+      id: 75,
+    },
+	    {
+      audioSrc:
+        'https://mediaprima.rastream.com/mediaprima-hotfm',
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRIcon.png',
+      name: 'Hot FM',
+      desc: 'Malaysia',
+      id: 76,
+    },
+	    {
+      audioSrc:
+        'https://mediaprima.rastream.com/mediaprima-molekfm',
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRIcon.png',
+      name: 'Molek FM',
+      desc: 'Malaysia',
+      id: 77,
+    },
+	    {
+      audioSrc:
+        'https://mediaprima.rastream.com/mediaprima-flyfm',
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRIcon.png',
+      name: 'Fly FM',
+      desc: 'Malaysia',
+      id: 78,
+    },
+	    {
+      audioSrc:
+        'https://mediaprima.rastream.com/mediaprima-onefm',
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRIcon.png',
+      name: 'Eight FM',
+      desc: 'Malaysia',
+      id: 79,
+    },	
+	    {
+      audioSrc:
+        'https://servidor30-2.brlogic.com:7048/live',
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRIcon.png',
+      name: 'Bapakku FM',
+      desc: 'Malaysia',
+      id: 80,
+    },	
+  ];
+
+  const currentTrackName = document.querySelector('header h3');
+  const currentTrackDesc = document.querySelector('header p');
+  const currentTrackCover = document.querySelector('header img');
+  const currentTrackAudio = document.querySelector('audio');
+  const playPauseBtn = document.querySelector('.event-playPause');
+  const muteUnmuteBtn = document.querySelector('.event-muteUnmute');
+  const playNextBtn = document.querySelector('.event-next');
+  const playPrevBtn = document.querySelector('.event-prev');
+  const progress = document.querySelector('.slider-progress');
+  const currentTrackTime = document.querySelector('.count-current');
+  const finalTrackTime = document.querySelector('.count-final');
+  // ADD TRACKS TO MY PLAYLIST ON PAGE LOAD
+  (function addMyTracksList() {
+    for (let track of tracksList) {
+      var li = document.createElement('li');
+      li.id = track.id;
+      li.innerHTML = `
+                    <div class="track-number">0${track.id}</div>
+                    <img
+                    src=${track.coverSrc}
+                    class="track-img"
+                    alt=""
+                    />
+
+                    <div class="track-detail">
+                    <div class="track-detail_name">${track.name}</div>
+                    <div class="track-detail_desc">
+                        <small>${track.desc}</small>
+                    </div>
+                    </div>
+        `;
+      document.querySelector('ul').appendChild(li);
+      (function (id) {
+        li.addEventListener(
+          'click',
+          () => {
+            playSelectedTrack(id);
+          },
+          false
+        );
+      })(track.id);
+    }
+  })();
+
+  let trackId = 1;
+
+  const loadTrack = (songId) => {
+    const song = tracksList.find((track) => track.id === songId);
+
+    const { audioSrc, coverSrc, name, desc } = song;
+    currentTrackName.innerText = name;
+    currentTrackDesc.innerText = desc;
+    currentTrackAudio.src = audioSrc;
+    currentTrackCover.src = coverSrc;
+  };
+
+  const playSelectedTrack = (songId) => {
+    trackId = songId;
+    loadTrack(songId);
+    playTrack();
+  };
+
+  loadTrack(trackId);
+
+  const playTrack = () => {
+    playPauseBtn.classList.remove('fa-play');
+    playPauseBtn.classList.add('fa-pause');
+
+    currentTrackAudio.play();
+  };
+
+  const pauseTrack = () => {
+    playPauseBtn.classList.remove('fa-pause');
+    playPauseBtn.classList.add('fa-play');
+
+    currentTrackAudio.pause();
+  };
+
+  const playPrevTrack = () => {
+    trackId--;
+
+    if (trackId < 0) {
+      trackId = tracksList.length - 1;
+    }
+    loadTrack(trackId);
+    playTrack();
+  };
+
+  const playNextTrack = () => {
+    trackId++;
+    if (trackId > tracksList.length - 1) {
+      trackId = 0;
+    }
+    loadTrack(trackId);
+    playTrack();
+  };
+
+  const updateProgress = () => {
+    const currentTime = currentTrackAudio.currentTime;
+    const trackDuration = currentTrackAudio.duration;
+    const percent = (currentTime / trackDuration) * 100;
+    progress.style.width = percent + '%';
+    let curMins = Math.floor(currentTime / 60);
+    let curSecs = Math.floor(currentTime - curMins * 60);
+    let durMins = Math.floor(trackDuration / 60) || '--';
+    let durSecs = Math.floor(trackDuration - durMins * 60) || '--';
+
+    if (curMins < 10) {
+      curMins = `0${curMins}`;
+    }
+    if (curSecs < 10) {
+      curSecs = `0${curSecs}`;
+    }
+    if (durMins < 10) {
+      durMins = `0${durMins}`;
+    }
+    if (durSecs < 10) {
+      durSecs = `0${durSecs}`;
+    }
+
+    currentTrackTime.innerText = `${curMins}:${curSecs}`;
+    finalTrackTime.innerText = `${durMins}:${durSecs}`;
+  };
+
+  const muteUnmuteTrack = () => {
+    if (currentTrackAudio.muted) {
+      currentTrackAudio.muted = false;
+      muteUnmuteBtn.classList.remove('fa-volume-mute');
+      muteUnmuteBtn.classList.add('fa-volume-up');
+    } else {
+      currentTrackAudio.muted = true;
+      muteUnmuteBtn.classList.remove('fa-volume-up');
+      muteUnmuteBtn.classList.add('fa-volume-mute');
+    }
+  };
+
+  playPauseBtn.addEventListener('click', () => {
+    const currentlyPlaying = playPauseBtn.classList.contains('fa-pause');
+
+    currentlyPlaying ? pauseTrack() : playTrack();
+  });
+  muteUnmuteBtn.addEventListener('click', () => muteUnmuteTrack());
+
+  playPrevBtn.addEventListener('click', () => playPrevTrack());
+  playNextBtn.addEventListener('click', () => playNextTrack());
+
+  currentTrackAudio.addEventListener('timeupdate', () => updateProgress());
+});
+</script></body></html><!-- https://t.me/htmlcoding_html_coding_free -->
+
