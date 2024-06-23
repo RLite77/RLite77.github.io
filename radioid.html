@@ -1,0 +1,1015 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<!-- https://t.me/htmlcoding_html_coding_free -->
+
+<meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+
+<!-- STYLES -->
+	
+<style type="text/css">
+@import url('https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+*,
+*::after,
+*::before {
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Fira Sans', sans-serif;
+  background-image: url('https://i.ibb.co/smcrLSf/wallindo.jpg');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+  background-size: cover;
+}
+
+section {
+  max-width: 576px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+header {
+  text-align: center;
+  margin: 0rem 0 0 0;
+}
+
+header img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+}
+
+header h3 {
+  color: #fff;
+  margin: 1px 0 1px 0;
+}
+
+header p {
+  color: #fff;
+}
+
+label {
+  color: #ffff00;
+  border-bottom: 4px solid crimson;
+  margin-left: 2rem;
+  width: fit-content;
+  padding: 0 0.25rem;
+  margin-top: 1rem;
+  display: block;
+}
+
+ul {
+  background-color: #fff;
+  flex: 1;
+  overflow-y: auto;
+  padding: 1.0rem 0.5rem 0 0.5rem;
+}
+
+ul li {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #000;
+  margin-bottom: 15px;
+  padding-bottom: 0.5rem;
+}
+
+.track-img {
+  width: 50px;
+  height: 50px;
+  margin-right: 10px;
+}
+
+.track-number {
+  color: #000;
+  margin-right: 10px;
+}
+
+.track-detail_name {
+  color: #000;
+}
+
+.track-detail_desc {
+  color: #ff0000;
+}
+
+footer {
+  background-color: #000;
+  padding: 0 0.25rem 0.25rem 0.25rem;
+}
+
+.slider {
+  background-color: #000;
+  border-radius: 8px;
+  cursor: pointer;
+  height: 2px;
+  position: relative;
+  width: 100%;
+}
+
+.slider-progress {
+  background-color: crimson;
+  height: 100%;
+  pointer-events: none;
+  position: absolute;
+  width: 0%;
+}
+.slider-pin {
+  background-color: #fff;
+  border-radius: 8px;
+  height: 8px;
+  position: absolute;
+  pointer-events: all;
+  right: -5px;
+  top: -2px;
+  width: 8px;
+  box-shadow: (20px 20px 20px 20px rgba(0, 0, 0, 0.32));
+  transition: (transform 0.25s ease);
+}
+
+.count {
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.8rem;
+  margin: 3px 0 1rem 0;
+  font-weight: bold;
+}
+
+.event {
+  color:#fff;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+</style></head>
+
+<body><section>
+	
+<!-- CURRENT PLAYING HEADER -->
+	
+<header>
+<img src="https://i.ibb.co/FBM95gv/RRIcon.png" alt="playing-cover"/>
+<h3>Track Name</h3>
+<p>Track desc</p>
+</header>
+
+<!-- PLAYLIST LABEL-->
+	
+<label>Radio Stations</label>
+
+<!-- TRACK LIST -->
+	
+<ul></ul>
+
+<!-- MUSIC CONTROLS -->
+	
+<footer>
+	
+<!-- SLIDER -->
+	
+<div class="slider">
+<div class="slider-progress">
+<div class="slider-pin"></div>
+</div></div>
+
+<!-- COUNT -->
+	
+<div class="count">
+<span class="count-current">00:01</span>
+<span class="count-final">11:23</span>
+</div>
+
+<!-- EVENTS -->
+	
+<div class="event">
+<i class="fas fa-caret-left event-prev"></i>
+<i class="fas fa-play event-playPause"></i>
+<i class="fas fa-caret-right event-next"></i>
+<i class="fas fa-volume-up event-muteUnmute"></i>
+
+</div></footer></section>
+
+<audio src="" id="audio"></audio>
+<!-- https://t.me/htmlcoding_html_coding_free -->
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', function () {
+  const tracksList = [
+    {
+      audioSrc:
+        'http://202.147.199.99:8000/;',
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRIcon.png',
+      name: 'Radio Dangdut',
+      desc: 'Indonesia',
+      id: 1,
+    },
+    {
+      audioSrc:
+        'https://live.nagaswarafm.com:8088/stream',
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRIcon.png',
+      name: 'Nagaswara',
+      desc: 'Indonesia',
+      id: 2,
+    },	
+    {
+      audioSrc:
+        'http://streaming.suzanafm.com:8000/;',
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRIcon.png',
+      name: 'Suzana FM',
+      desc: 'Indonesia',
+      id: 3,
+    },
+    {
+      audioSrc:
+        'https://n0d.radiojar.com/4ywdgup3bnzuv?rj-ttl=5&rj-tok=AAABfs1yabgA8X7zII_3v6p3hg',
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRIcon.png',
+      name: 'I Radio FM',
+      desc: 'Indonesia',
+      id: 4,
+    },
+    {
+      audioSrc:
+        'http://listento.ardanradio.com:1059/;',
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRIcon.png',
+      name: 'Ardan Radio',
+      desc: 'Indonesia',
+      id: 5,
+    },
+    {
+      audioSrc:
+        'http://rkm.arenastreaming.com:8009/stream',
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRIcon.png',
+      name: 'Radio Kampuang Minang',
+      desc: 'Indonesia',
+      id: 6,
+    },
+    {
+      audioSrc:
+        'http://node-14.zeno.fm/4m7xu3s6e3quv?rj-ttl=5&rj-tok=AAABfs141CcAd-mJt3AMBmwbIg',
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRIcon.png',
+      name: 'Jakarta Today’s Hits Radio',
+      desc: 'Indonesia',
+      id: 7,
+    },
+    {
+      audioSrc:
+        'https://22253.live.streamtheworld.com/PRAMBORS_FM.mp3?dist=pramborsweb&tdsdk=js-2.9&pname=tdwidgets&pversion=2.9&banners=300x250&sbmid=9e45c69f-e7f2-470f-80da-158777b93449',
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRIcon.png',
+      name: 'Prambors FM',
+      desc: 'Indonesia',
+      id: 8,
+    },
+    {
+      audioSrc:
+        'https://n01.radiojar.com/rrqf78p3bnzuv?rj-ttl=5&rj-tok=AAABfs2TWYkAcf53W8TTIwXlNg',
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRIcon.png',
+      name: 'Trax FM',
+      desc: 'Indonesia',
+      id: 9,
+    },
+    {
+      audioSrc:
+        'http://s3.vinhostmedia.com:1031/;',
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRIcon.png',
+      name: 'OZ Bandung 103.1 FM',
+      desc: 'Indonesia',
+      id: 10,
+    },
+    {
+      audioSrc:
+        'https://cdnmakassarpro1.rri.co.id/web-rrimakasarpro1.mp3',
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRIcon.png',
+      name: 'PRO 1 RRI Makassar',
+      desc: 'Indonesia',
+      id: 11,
+    },
+    {
+      audioSrc:
+        'https://n02.radiojar.com/7csmg90fuqruv?rj-ttl=5&rj-tok=AAABfs3DdrUAZulx1j56HX3uZw',
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRIcon.png',
+      name: 'Hard Rock FM Jakarta',
+      desc: 'Indonesia',
+      id: 12,
+    },
+    {
+      audioSrc:
+        'http://gajahmada.i.streaming.id:8000/live',
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRIcon.png',
+      name: 'Gajahmada',
+      desc: 'Indonesia',
+      id: 13,
+    },
+    {
+      audioSrc:
+        'https://i.klikhost.com/9006/;',
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRIcon.png',
+      name: 'RAS-Jakarta Islamic',
+      desc: 'Indonesia',
+      id: 14,
+    },
+    {
+      audioSrc:
+        'https://streamingv2.shoutcast.com/motion-jakarta',
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRIcon.png',
+      name: 'Motion Radio Jakarta',
+      desc: 'Indonesia',
+      id: 15,
+    },
+    {
+      audioSrc:
+        'https://live2.indostreamserver.com/8018/stream/1/',
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRIcon.png',
+      name: 'Geronimo Jogja',
+      desc: 'Indonesia',
+      id: 16,
+    },
+    {
+      audioSrc:
+        'https://s2.radio.co/sf58a82d7d/listen',
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRIcon.png',
+      name: 'Indika FM',
+      desc: 'Indonesia',
+      id: 17,
+    },
+    {
+      audioSrc:
+        'http://svara-stream.radioddns.net:8000/bandung_klitefm_acc',
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRIcon.png',		
+      name: 'K Lite Bandung',
+      desc: 'Indonesia',
+      id: 18,
+    },
+    {
+      audioSrc:
+        'http://stream.denger.in:8888/dmi',
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRIcon.png',		
+      name: 'Dengerin Musik',
+      desc: 'Indonesia',
+      id: 19,
+    },
+    {
+      audioSrc:
+        'https://live.indostreamserver.com/8030/stream/1/',
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRIcon.png',		
+      name: 'Radio Pelita Kasih',
+      desc: 'Indonesia',
+      id: 20,
+    },
+    {
+      audioSrc:
+        'https://stream-ssl.arenastreaming.com:8000/jakarta',
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRIcon.png',		
+      name: 'Radio Elshinta Jakarta',
+      desc: 'Indonesia',
+      id: 21,
+    },
+    {
+      audioSrc:
+        'http://45.64.97.82:8886/stream/2/',
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRIcon.png',		
+      name: 'Radio Pas',
+      desc: 'Indonesia',
+      id: 22,
+    },
+    {
+      audioSrc:
+        'http://live.radiosunnah.net/;',
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRIcon.png',		
+      name: 'Kita Cirebon',
+      desc: 'Indonesia',
+      id: 23,
+    },
+    {
+      audioSrc:
+        'https://c5.siar.us/proxy/ssfm/stream',
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRIcon.png',	
+      name: 'Suara Surabaya',
+      desc: 'Indonesia',
+      id: 24,
+    },
+    {
+      audioSrc:
+        'http://coloid.fajrifm.com:9930/;',
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRIcon.png',		
+      name: 'Radio Fajri Bogor',
+      desc: 'Indonesia',
+      id: 25,
+    },
+    {
+      audioSrc:
+        'http://scg.streamingmurah.com:9940/stream/1/',
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRIcon.png',		
+      name: 'Retjo Buntung Jogja',
+      desc: 'Indonesia',
+      id: 26,
+    },
+    {
+      audioSrc:
+        'https://streamingv2.shoutcast.com/raka-bandung',
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRIcon.png',		
+      name: 'Raka 98.8 FM Bandung',
+      desc: 'Indonesia',
+      id: 27,
+    },
+    {
+      audioSrc:
+        'https://streamingv2.shoutcast.com/sonora-surabaya',
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRIcon.png',		
+      name: 'Radio Sonora 98.0 FM',
+      desc: 'Indonesia',
+      id: 28,
+    },
+    {
+      audioSrc:
+        'https://n0a.radiojar.com/u7d8heq3bnzuv?rj-ttl=5&rj-tok=AAABftP7QPUAnUyKuv58kj-wfg',
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRIcon.png',		
+      name: 'Cosmopolitan',
+      desc: 'Indonesia',
+      id: 29,
+    },
+    {
+      audioSrc:
+        'http://live.deltafm.net:9002/deltafm',
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRIcon.png',		
+      name: 'Delta 99.1 FM',
+      desc: 'Indonesia',
+      id: 30,
+    },
+    {
+      audioSrc:
+        'https://22283.live.streamtheworld.com/FEMALERADIO_SC',
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRIcon.png',		
+      name: 'Female Radio 97.9 FM',
+      desc: 'Indonesia',
+      id: 31,
+    },
+    {
+      audioSrc:
+        'https://svara-stream.radioddns.net:8443/bandung_dahliafm',
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRIcon.png',		
+      name: 'Dahlia FM',
+      desc: 'Indonesia',
+      id: 32,
+    },
+    {
+      audioSrc:
+        'https://streamingv2.shoutcast.com/smart-jakarta',
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRIcon.png',		
+      name: 'Smart FM',
+      desc: 'Indonesia',
+      id: 33,
+    },
+    {
+      audioSrc:
+        'http://live.serambifm.com:8902/stream/1/',
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRIcon.png',		
+      name: 'Serambi FM Banda Aceh',
+      desc: 'Indonesia',
+      id: 34,
+    },
+    {
+      audioSrc:
+        'http://stream.radbdg.net:8000/mgtradio.mp3',
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRIcon.png',		
+      name: 'MGT Radio',
+      desc: 'Indonesia',
+      id: 35,
+    },
+    {
+      audioSrc:
+        'http://103.66.86.26:8018/stream/1/',
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRIcon.png',		
+      name: 'D OZ Radio Bali',
+      desc: 'Indonesia',
+      id: 36,
+    },
+    {
+      audioSrc:
+        'http://161.97.175.204:8000/live',
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRIcon.png',		
+      name: 'Arbes Padang',
+      desc: 'Indonesia',
+      id: 37,
+    },
+    {
+      audioSrc:
+        'https://svara-stream.radioddns.net:8443/rasikasemarang_mono',
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRIcon.png',		
+      name: 'Rasika Semarang',
+      desc: 'Indonesia',
+      id: 38,
+    },
+    {
+      audioSrc:
+        'https://svara-stream.radioddns.net:8443/rasikafm_mono',
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRIcon.png',		
+      name: 'Rasika FM',
+      desc: 'Indonesia',
+      id: 40,
+    },
+    {
+      audioSrc:
+        'https://streaming.classynetradio.com/radio/8000/classyHD',
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRIcon.png',		
+      name: 'Classy NetRadio',
+      desc: 'Indonesia',
+      id: 41,
+    },
+    {
+      audioSrc:
+        'https://c4.siar.us/proxy/sheradio/stream',
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRIcon.png',		
+      name: 'SHE Radio Surabaya',
+      desc: 'Indonesia',
+      id: 42,
+    },
+    {
+      audioSrc:
+        'http://c1.siar.us:9880/stream/1/',
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRIcon.png',		
+      name: 'Radio Wijaya Surabaya',
+      desc: 'Indonesia',
+      id: 43,
+    },
+    {
+      audioSrc:
+        'http://51.79.18.86:8082/stream/1/',
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRIcon.png',		
+      name: 'Perkasa Tulungagung',
+      desc: 'Indonesia',
+      id: 44,
+    },
+    {
+      audioSrc:
+        'http://i.klikhost.com:8692/;',
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRIcon.png',		
+      name: 'Soka Radio Jember',
+      desc: 'Indonesia',
+      id: 45,
+    },
+    {
+      audioSrc:
+        'https://live.dreamers.id:8443/live',
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRIcon.png',		
+      name: 'Dreamers.id',
+      desc: 'Indonesia',
+      id: 46,
+    },
+    {
+      audioSrc:
+        'http://45.64.97.82:8262/stream/1/',
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRIcon.png',		
+      name: 'Sudarmanto',
+      desc: 'Indonesia',
+      id: 47,
+    },
+    {
+      audioSrc:
+        'http://sci.streamingmurah.com:8094/stream/1/',
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRIcon.png',		
+      name: 'Radio Teman Sejati',
+      desc: 'Indonesia',
+      id: 48,
+    },
+    {
+      audioSrc:
+        'http://45.64.97.82:8273/stream/1/',
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRIcon.png',		
+      name: 'The All New Sky Radio',
+      desc: 'Indonesia',
+      id: 49,
+    },
+    {
+      audioSrc:
+        'https://svara-stream.radioddns.net:8443/bandaaceh_djatifm_mp3',
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRIcon.png',		
+      name: 'Djati FM',
+      desc: 'Indonesia',
+      id: 50,
+    },
+    {
+      audioSrc:
+        'https://stream.jombangkab.go.id/sjfm2.mp3',
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRIcon.png',		
+      name: 'Radio Suara Jombang',
+      desc: 'Indonesia',
+      id: 51,
+    },
+    {
+      audioSrc:
+        'http://streaming.rhemaradio.com:5757/;',
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRIcon.png',		
+      name: '88.6 Rhema FM',
+      desc: 'Indonesia',
+      id: 52,
+    },	
+    {
+      audioSrc:
+        'http://shaddai.onlivestreaming.net:9130/live',
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRIcon.png',		
+      name: 'El Shaddai FM Surakarta',
+      desc: 'Indonesia',
+      id: 53,
+    },
+    {
+      audioSrc:
+        'https://bassfm.radio.yufid.com/;',
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRIcon.png',		
+      name: 'Radio Bass Salatiga',
+      desc: 'Indonesia',
+      id: 54,
+    },
+    {
+      audioSrc:
+        'http://202.43.173.188:8010/stream/;',
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRIcon.png',		
+      name: 'Suara Giri 98.4 FM',
+      desc: 'Indonesia',
+      id: 55,
+    },	
+    {
+      audioSrc:
+        'http://streaming.rri.co.id:9014/kbrn.mp3',
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRIcon.png',		
+      name: 'RRI Pro 3',
+      desc: 'Indonesia',
+      id: 56,
+    },
+    {
+      audioSrc:
+        'http://wijayafm.onlivestreaming.net:9880/;',
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRIcon.png',		
+      name: 'Wijaya 103.5 FM',
+      desc: 'Indonesia',
+      id: 57,
+    },
+    {
+      audioSrc:
+        'http://server.menara-fm.com:10280/menarafmbali',
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRIcon.png',		
+      name: 'Menara FM 102.8',
+      desc: 'Indonesia',
+      id: 58,
+    },
+    {
+      audioSrc:
+        'http://202.147.199.100:8000/;',
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRIcon.png',		
+      name: ' V-Radio Jakarta 106.6 FM',
+      desc: 'Indonesia',
+      id: 59,
+    },
+    {
+      audioSrc:
+        'http://103.246.184.34:8000/gensby',
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRIcon.png',		
+      name: '103.1 Gen FM Surabaya',
+      desc: 'Indonesia',
+      id: 60,
+    },
+    {
+      audioSrc:
+        'https://22283.live.streamtheworld.com/PRAMBORS_FM_SC',
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRIcon.png',		
+      name: 'Prambors FM 89.3 Surabaya',
+      desc: 'Indonesia',
+      id: 61,
+    },
+    {
+      audioSrc:
+        'https://23683.live.streamtheworld.com/PRAMBORS_FM_SC',
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRIcon.png',		
+      name: 'Prambors FM 95.8 Yogyakarta',
+      desc: 'Indonesia',
+      id: 62,
+    },
+    {
+      audioSrc:
+        'https://svara-stream.radioddns.net:8443/jakarta_z999fm_aac',
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRIcon.png',		
+      name: ' Z 99.9 FM',
+      desc: 'Indonesia',
+      id: 63,
+    },
+    {
+      audioSrc:
+        'http://streaming.ebsfm.com:8100/;',
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRIcon.png',		
+      name: 'EBS 105.9 FM',
+      desc: 'Indonesia',
+      id: 65,
+    },
+    {
+      audioSrc:
+        'http://stream.werdimedia.com:8200/;',
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRIcon.png',		
+      name: 'Radio Genta Bali 96.1 FM',
+      desc: 'Indonesia',
+      id: 66,
+    },
+    {
+      audioSrc:
+        'https://n0b.radiojar.com/5k7t0rq3bnzuv.mp3?rj-tok=AAABchgsUkYAw6Ro3XA9ZJpyrA&rj-ttl=5',
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRIcon.png',		
+      name: 'Brava Radio',
+      desc: 'Indonesia',
+      id: 67,
+    },
+    {
+      audioSrc:
+        'http://185.193.159.236:8090/;stream/1',
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRIcon.png',		
+      name: 'Radio Islam',
+      desc: 'Indonesia',
+      id: 68,
+    },
+    {
+      audioSrc:
+        'http://dengerin.radiocakrabandung.com:8905/;',
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRIcon.png',		
+      name: 'Cakra Bandung 90.5FM',
+      desc: 'Indonesia',
+      id: 69,
+    },
+    {
+      audioSrc:
+        'http://202.147.199.98/;stream.mp3',
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRIcon.png',		
+      name: 'Global FM Jakarta',
+      desc: 'Indonesia',
+      id: 70,
+    },
+    {
+      audioSrc:
+        'https://live.nagaswarafm.com:9100/stream',
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRIcon.png',		
+      name: 'Nagaswara Pop',
+      desc: 'Indonesia',
+      id: 71,
+    },
+    {
+      audioSrc:
+        'https://live.nagaswarafm.com:9900/stream',
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRIcon.png',		
+      name: ' Nagaswara FM Radiotemen',
+      desc: 'Indonesia',
+      id: 72,
+    },
+    {
+      audioSrc:
+        'https://streaming.radioimeldafm.co.id:8443/imeldafm',
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRIcon.png',		
+      name: 'Radio Imelda FM',
+      desc: 'Indonesia',
+      id: 73,
+    },
+    {
+      audioSrc:
+        'https://live.nagaswarafm.com:9200/stream',
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRIcon.png',		
+      name: 'NAGASWARA DanceDhut',
+      desc: 'Indonesia',
+      id: 74,
+    },
+    {
+      audioSrc:
+        'https://mqfmstreaming.kamil.web.id/;',
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRIcon.png',		
+      name: ' Radio MQ FM',
+      desc: 'Indonesia',
+      id: 75,
+    },	
+    {
+      audioSrc:
+        'https://radiotangermed-22.ice.infomaniak.ch/radiotangermed-22-128.mp3',
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRIcon.png',		
+      name: 'Radio Tanger Med',
+      desc: 'Indonesia',
+      id: 76,
+    },
+    {
+      audioSrc:
+        'http://185.47.62.52:8000/;',
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRIcon.png',		
+      name: 'Radio Hang FM',
+      desc: 'Indonesia',
+      id: 77,
+    },
+    {
+      audioSrc:
+        'http://radioswadesijogja.id.myradio.web.id:8888/radioswadesijogja',
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRIcon.png',		
+      name: 'Radio Swadesi FM 107.8 Jogja',
+      desc: 'Indonesia',
+      id: 78,
+    },
+    {
+      audioSrc:
+        'http://live.camajayafm.com:8220/;stream.mp3',
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRIcon.png',		
+      name: 'Radio Camajaya',
+      desc: 'Indonesia',
+      id: 79,
+    },
+    {
+      audioSrc:
+        'http://live.kissfm-medan.com:8080/kissfm.mp3',
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRIcon.png',		
+      name: ' Kiss 105 FM Medan',
+      desc: 'Indonesia',
+      id: 80,
+    },
+    {
+      audioSrc:
+        'http://n13.radiojar.com/yg8ne2v80k8uv?rj-ttl=5&rj-tok=AAABfuMlF1kAz3Od3K4FER1fAw',
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRIcon.png',		
+      name: 'Hard Rock FM 89.7 - Surabaya',
+      desc: 'Indonesia',
+      id: 81,
+    },
+    {
+      audioSrc:
+        'http://203.30.236.2:9460/;stream.mp3',
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRIcon.png',		
+      name: 'Kotaperak Jogja',
+      desc: 'Indonesia',
+      id: 82,
+    },
+    {
+      audioSrc:
+        'https://s2.radio.co/s6929cb202/listen',
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRIcon.png',		
+      name: '96.7HITZ Jakarta',
+      desc: 'Indonesia',
+      id: 83,
+    },	
+    {
+      audioSrc:
+        'http://live.kisifm.com:9340/max-radio',
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRIcon.png',		
+      name: 'Radio Dangdut 2',
+      desc: 'Indonesia',
+      id: 84,
+    },	
+
+  ];
+
+  const currentTrackName = document.querySelector('header h3');
+  const currentTrackDesc = document.querySelector('header p');
+  const currentTrackCover = document.querySelector('header img');
+  const currentTrackAudio = document.querySelector('audio');
+  const playPauseBtn = document.querySelector('.event-playPause');
+  const muteUnmuteBtn = document.querySelector('.event-muteUnmute');
+  const playNextBtn = document.querySelector('.event-next');
+  const playPrevBtn = document.querySelector('.event-prev');
+  const progress = document.querySelector('.slider-progress');
+  const currentTrackTime = document.querySelector('.count-current');
+  const finalTrackTime = document.querySelector('.count-final');
+  // ADD TRACKS TO MY PLAYLIST ON PAGE LOAD
+  (function addMyTracksList() {
+    for (let track of tracksList) {
+      var li = document.createElement('li');
+      li.id = track.id;
+      li.innerHTML = `
+                    <div class="track-number">0${track.id}</div>
+                    <img
+                    src=${track.coverSrc}
+                    class="track-img"
+                    alt=""
+                    />
+
+                    <div class="track-detail">
+                    <div class="track-detail_name">${track.name}</div>
+                    <div class="track-detail_desc">
+                        <small>${track.desc}</small>
+                    </div>
+                    </div>
+        `;
+      document.querySelector('ul').appendChild(li);
+      (function (id) {
+        li.addEventListener(
+          'click',
+          () => {
+            playSelectedTrack(id);
+          },
+          false
+        );
+      })(track.id);
+    }
+  })();
+
+  let trackId = 1;
+
+  const loadTrack = (songId) => {
+    const song = tracksList.find((track) => track.id === songId);
+
+    const { audioSrc, coverSrc, name, desc } = song;
+    currentTrackName.innerText = name;
+    currentTrackDesc.innerText = desc;
+    currentTrackAudio.src = audioSrc;
+    currentTrackCover.src = coverSrc;
+  };
+
+  const playSelectedTrack = (songId) => {
+    trackId = songId;
+    loadTrack(songId);
+    playTrack();
+  };
+
+  loadTrack(trackId);
+
+  const playTrack = () => {
+    playPauseBtn.classList.remove('fa-play');
+    playPauseBtn.classList.add('fa-pause');
+
+    currentTrackAudio.play();
+  };
+
+  const pauseTrack = () => {
+    playPauseBtn.classList.remove('fa-pause');
+    playPauseBtn.classList.add('fa-play');
+
+    currentTrackAudio.pause();
+  };
+
+  const playPrevTrack = () => {
+    trackId--;
+
+    if (trackId < 0) {
+      trackId = tracksList.length - 1;
+    }
+    loadTrack(trackId);
+    playTrack();
+  };
+
+  const playNextTrack = () => {
+    trackId++;
+    if (trackId > tracksList.length - 1) {
+      trackId = 0;
+    }
+    loadTrack(trackId);
+    playTrack();
+  };
+
+  const updateProgress = () => {
+    const currentTime = currentTrackAudio.currentTime;
+    const trackDuration = currentTrackAudio.duration;
+    const percent = (currentTime / trackDuration) * 100;
+    progress.style.width = percent + '%';
+    let curMins = Math.floor(currentTime / 60);
+    let curSecs = Math.floor(currentTime - curMins * 60);
+    let durMins = Math.floor(trackDuration / 60) || '--';
+    let durSecs = Math.floor(trackDuration - durMins * 60) || '--';
+
+    if (curMins < 10) {
+      curMins = `0${curMins}`;
+    }
+    if (curSecs < 10) {
+      curSecs = `0${curSecs}`;
+    }
+    if (durMins < 10) {
+      durMins = `0${durMins}`;
+    }
+    if (durSecs < 10) {
+      durSecs = `0${durSecs}`;
+    }
+
+    currentTrackTime.innerText = `${curMins}:${curSecs}`;
+    finalTrackTime.innerText = `${durMins}:${durSecs}`;
+  };
+
+  const muteUnmuteTrack = () => {
+    if (currentTrackAudio.muted) {
+      currentTrackAudio.muted = false;
+      muteUnmuteBtn.classList.remove('fa-volume-mute');
+      muteUnmuteBtn.classList.add('fa-volume-up');
+    } else {
+      currentTrackAudio.muted = true;
+      muteUnmuteBtn.classList.remove('fa-volume-up');
+      muteUnmuteBtn.classList.add('fa-volume-mute');
+    }
+  };
+
+  playPauseBtn.addEventListener('click', () => {
+    const currentlyPlaying = playPauseBtn.classList.contains('fa-pause');
+
+    currentlyPlaying ? pauseTrack() : playTrack();
+  });
+  muteUnmuteBtn.addEventListener('click', () => muteUnmuteTrack());
+
+  playPrevBtn.addEventListener('click', () => playPrevTrack());
+  playNextBtn.addEventListener('click', () => playNextTrack());
+
+  currentTrackAudio.addEventListener('timeupdate', () => updateProgress());
+});
+</script></body></html><!-- https://t.me/htmlcoding_html_coding_free -->
