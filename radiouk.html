@@ -1,0 +1,926 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<!-- https://t.me/htmlcoding_html_coding_free -->
+
+<meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+
+<!-- STYLES -->
+	
+<style type="text/css">
+@import url('https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+*,
+*::after,
+*::before {
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Fira Sans', sans-serif;
+  background-image: url('https://i.ibb.co/bBpWd0P/walluk.jpg');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+  background-size: cover;
+}
+
+section {
+  max-width: 576px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+header {
+  text-align: center;
+  margin: 0rem 0 0 0;
+}
+
+header img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+}
+
+header h3 {
+  color: #fff;
+  margin: 1px 0 1px 0;
+}
+
+header p {
+  color: #fff;
+}
+
+label {
+  color: #ffff00;
+  border-bottom: 4px solid crimson;
+  margin-left: 2rem;
+  width: fit-content;
+  padding: 0 0.25rem;
+  margin-top: 1rem;
+  display: block;
+}
+
+ul {
+  background-color: #fff;
+  flex: 1;
+  overflow-y: auto;
+  padding: 1.0rem 0.5rem 0 0.5rem;
+}
+
+ul li {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #000;
+  margin-bottom: 15px;
+  padding-bottom: 0.5rem;
+}
+
+.track-img {
+  width: 50px;
+  height: 50px;
+  margin-right: 10px;
+}
+
+.track-number {
+  color: #000;
+  margin-right: 10px;
+}
+
+.track-detail_name {
+  color: #000;
+}
+
+.track-detail_desc {
+  color: #ccc;
+}
+
+footer {
+  background-color: #000;
+  padding: 0 0.25rem 0.25rem 0.25rem;
+}
+
+.slider {
+  background-color: #000;
+  border-radius: 8px;
+  cursor: pointer;
+  height: 2px;
+  position: relative;
+  width: 100%;
+}
+
+.slider-progress {
+  background-color: crimson;
+  height: 100%;
+  pointer-events: none;
+  position: absolute;
+  width: 0%;
+}
+.slider-pin {
+  background-color: #fff;
+  border-radius: 8px;
+  height: 8px;
+  position: absolute;
+  pointer-events: all;
+  right: -5px;
+  top: -2px;
+  width: 8px;
+  box-shadow: (20px 20px 20px 20px rgba(0, 0, 0, 0.32));
+  transition: (transform 0.25s ease);
+}
+
+.count {
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.8rem;
+  margin: 3px 0 1rem 0;
+  font-weight: bold;
+}
+
+.event {
+  color:#fff;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+</style></head>
+
+<body><section>
+	
+<!-- CURRENT PLAYING HEADER -->
+	
+<header>
+<img src="https://i.ibb.co/FBM95gv/RRIcon.png" alt="playing-cover"/>
+<h3>Track Name</h3>
+<p>Track desc</p>
+</header>
+
+<!-- PLAYLIST LABEL-->
+	
+<label>Radio Stations</label>
+
+<!-- TRACK LIST -->
+	
+<ul></ul>
+
+<!-- MUSIC CONTROLS -->
+	
+<footer>
+	
+<!-- SLIDER -->
+	
+<div class="slider">
+<div class="slider-progress">
+<div class="slider-pin"></div>
+</div></div>
+
+<!-- COUNT -->
+	
+<div class="count">
+<span class="count-current">00:01</span>
+<span class="count-final">11:23</span>
+</div>
+
+<!-- EVENTS -->
+	
+<div class="event">
+<i class="fas fa-caret-left event-prev"></i>
+<i class="fas fa-play event-playPause"></i>
+<i class="fas fa-caret-right event-next"></i>
+<i class="fas fa-volume-up event-muteUnmute"></i>
+
+</div></footer></section>
+
+<audio src="" id="audio"></audio>
+<!-- https://t.me/htmlcoding_html_coding_free -->
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', function () {
+  const tracksList = [
+    {
+      audioSrc:
+        'https://stream5.thepuremix.net/softrock.mp3',				
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRRIcon.png',			
+      name: 'Soft Rock Radio',				
+      desc: 'UK',				
+      id: 1,				
+    },
+    {
+      audioSrc:
+        'https://media-ssl.musicradio.com/Capital',				
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRRIcon.png',			
+      name: 'Capital FM London',				
+      desc: 'UK',				
+      id: 2,				
+    },
+    {
+      audioSrc:
+        'https://media-the.musicradio.com/ClassicFM',				
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRRIcon.png',			
+      name: 'Classic FM',				
+      desc: 'UK',				
+      id: 3,				
+    },
+    {
+      audioSrc:
+        'https://media-ssl.musicradio.com/SmoothLondonMP3',				
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRRIcon.png',			
+      name: 'Smooth Radio London 102.2',				
+      desc: 'UK',				
+      id: 4,				
+    },
+    {
+      audioSrc:
+        'https://media-ice.musicradio.com/Heart80sMP3',				
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRRIcon.png',			
+      name: 'Heart 80s',				
+      desc: 'UK',				
+      id: 5,				
+    },
+    {
+      audioSrc:
+        'https://radio.virginradio.co.uk/stream',				
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRRIcon.png',			
+      name: 'Virgin Radio UK',				
+      desc: 'UK',				
+      id: 6,				
+    },
+    {
+      audioSrc:
+        'https://stream-kiss.planetradio.co.uk/kissnational.aac',				
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRRIcon.png',			
+      name: 'KISS FM UK',				
+      desc: 'UK',				
+      id: 7,				
+    },
+    {
+      audioSrc:
+        'https://media-ssl.musicradio.com/Gold',				
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRRIcon.png',			
+      name: 'Gold Radio UK',				
+      desc: 'UK',				
+      id: 8,				
+    },
+    {
+      audioSrc:
+        'http://radio.housenationuk.com:9000/;',				
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRRIcon.png',			
+      name: 'House Nation',				
+      desc: 'UK',				
+      id: 9,				
+    },
+    {
+      audioSrc:
+        'https://media-ssl.musicradio.com/RadioXLondon',				
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRRIcon.png',			
+      name: 'Radio X',				
+      desc: 'UK',				
+      id: 10,				
+    },
+    {
+      audioSrc:
+        'https://media-ssl.musicradio.com/SmoothChill',				
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRRIcon.png',			
+      name: 'Smooth Chill',				
+      desc: 'UK',				
+      id: 11,				
+    },
+    {
+      audioSrc:
+        'https://media-ssl.musicradio.com/CapitalXTRALondonMP3',				
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRRIcon.png',			
+      name: 'Capital XTRA London',				
+      desc: 'UK',				
+      id: 12,				
+    },
+    {
+      audioSrc:
+        'https://media-ssl.musicradio.com/HeartDance',				
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRRIcon.png',			
+      name: 'Heart Dance',				
+      desc: 'UK',				
+      id: 13,				
+    },
+    {
+      audioSrc:
+        'https://media-ssl.musicradio.com/HeartUK',				
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRRIcon.png',			
+      name: 'Heart UK',				
+      desc: 'UK',				
+      id: 14,				
+    },
+    {
+      audioSrc:
+        'https://stream-mz.planetradio.co.uk/net2national.aac?amsparams=playerid%3ABMUK_html5&aw_0_1st.bauer_listenerid=bff384f70c95acc596cb75d4f686eaf5&aw_0_1st.playerid=BMUK_html5&direct=true&listenerid=bff384f70c95acc596cb75d4f686eaf5',				
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRRIcon.png',			
+      name: 'Greatest Hits Radio',				
+      desc: 'UK',				
+      id: 15,				
+    },
+    {
+      audioSrc:
+        'http://51.255.127.128:8016/stream',				
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRRIcon.png',			
+      name: 'The Mix Radio 80s',				
+      desc: 'UK',				
+      id: 16,				
+    },
+    {
+      audioSrc:
+        'https://stream-mz.planetradio.co.uk/planetrock.aac',				
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRRIcon.png',			
+      name: 'Planet Rock',				
+      desc: 'UK',				
+      id: 17,				
+    },
+    {
+      audioSrc:
+        'https://timesradio.wireless.radio/stream',				
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRRIcon.png',			
+      name: 'Times Radio',				
+      desc: 'UK',				
+      id: 18,				
+    },
+    {
+      audioSrc:
+        'https://media-ssl.musicradio.com/CapitalDance',				
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRRIcon.png',			
+      name: 'Capital Dance',				
+      desc: 'UK',				
+      id: 19,				
+    },
+    {
+      audioSrc:
+        'https://media-ssl.musicradio.com/Heart90s',				
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRRIcon.png',			
+      name: 'Heart 90s',				
+      desc: 'UK',				
+      id: 20,				
+    },
+    {
+      audioSrc:
+        'https://dancestream.danceradiouk.com/;',				
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRRIcon.png',			
+      name: 'Dance UK Radio',				
+      desc: 'UK',				
+      id: 21,				
+    },
+    {
+      audioSrc:
+        'https://usa19.fastcast4u.com/unlimited80s',				
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRRIcon.png',			
+      name: '70s 80s All Time Greatest',				
+      desc: 'UK',				
+      id: 22,				
+    },
+    {
+      audioSrc:
+        'https://media-ssl.musicradio.com/CapitalXTRAReloaded',				
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRRIcon.png',			
+      name: 'Capital XTRA Reloaded',				
+      desc: 'UK',				
+      id: 23,				
+    },
+    {
+      audioSrc:
+        'http://ice-sov.musicradio.com/SmoothUKMP3',				
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRRIcon.png',			
+      name: 'Smooth Radio UK',				
+      desc: 'UK',				
+      id: 24,				
+    },
+    {
+      audioSrc:
+        'https://stream-al.planetradio.co.uk/key.aac?amsparams=playerid%3ABMUK_html5&aw_0_1st.bauer_listenerid=undefined&aw_0_1st.bauer_loggedin=false&aw_0_1st.playerid=BMUK_html5&aw_0_1st.skey=1&awparams=loggedin%3Afalse&direct=true&listenerid=undefined',				
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRRIcon.png',			
+      name: 'Hits Radio Manchester',				
+      desc: 'UK',				
+      id: 25,				
+    },
+    {
+      audioSrc:
+        'https://stream-mz.planetradio.co.uk/webcast6high.aac?amsparams=playerid%3ABMUK_html5&aw_0_1st.bauer_listenerid=bed270b947d7e96c33f9a82e1c44e224&aw_0_1st.playerid=BMUK_html5&direct=true&listenerid=bed270b947d7e96c33f9a82e1c44e224',				
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRRIcon.png',			
+      name: 'KISS Dance',				
+      desc: 'UK',				
+      id: 26,				
+    },
+    {
+      audioSrc:
+        'https://443-1.autopo.st/54/stream.mp3',				
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRRIcon.png',			
+      name: 'Hot Hits UK',				
+      desc: 'UK',				
+      id: 27,				
+    },
+    {
+      audioSrc:
+        'https://stream-mz.planetradio.co.uk/webcast5high.aac?amsparams=playerid%3ABMUK_html5&aw_0_1st.bauer_listenerid=bed270b947d7e96c33f9a82e1c44e224&aw_0_1st.playerid=BMUK_html5&direct=true&listenerid=bed270b947d7e96c33f9a82e1c44e224',				
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRRIcon.png',			
+      name: 'KISS Garage',				
+      desc: 'UK',				
+      id: 28,				
+    },
+    {
+      audioSrc:
+        'https://media-ssl.musicradio.com/Heart70s',				
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRRIcon.png',			
+      name: 'Heart 70s',				
+      desc: 'UK',				
+      id: 29,				
+    },
+    {
+      audioSrc:
+        'https://radio.virginradio.co.uk/stream-anthems',				
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRRIcon.png',			
+      name: 'Virgin Radio Anthems UK',				
+      desc: 'UK',				
+      id: 30,				
+    },
+    {
+      audioSrc:
+        'https://media-ssl.musicradio.com/SmoothCountry',				
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRRIcon.png',			
+      name: 'Smooth Radio Country',				
+      desc: 'UK',				
+      id: 31,				
+    },
+    {
+      audioSrc:
+        'http://centreforce.streamgb.com:8830/128',				
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRRIcon.png',			
+      name: '883 Centreforce radio',				
+      desc: 'UK',				
+      id: 32,				
+    },
+    {
+      audioSrc:
+        'https://goldradio.radioca.st/;',				
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRRIcon.png',			
+      name: 'Gold Radio',				
+      desc: 'UK',				
+      id: 33,				
+    },
+    {
+      audioSrc:
+        'http://s02.whooshserver.net:9091/live',				
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRRIcon.png',			
+      name: 'Vibes FM 93.8',				
+      desc: 'UK',				
+      id: 34,				
+    },
+    {
+      audioSrc:
+        'http://46.28.49.164:7504/stream',				
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRRIcon.png',			
+      name: 'Retro Soul Radio',				
+      desc: 'UK',				
+      id: 35,				
+    },
+    {
+      audioSrc:
+        'https://radio.virginradio.co.uk/stream-chilled?aw_0_1st.platform=vr-web&aw_0_1st.playerId=vr-web&aw_0_req.gdpr=true&awparams=companionAds%3Atrue&listenerid=159a807cf1f5919a1f5ec5de2d810c54',				
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRRIcon.png',			
+      name: 'Virgin Radio Chilled UK',				
+      desc: 'UK',				
+      id: 36,				
+    },
+    {
+      audioSrc:
+        'https://streams.radio.co/s07aafdd25/listen',				
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRRIcon.png',			
+      name: 'Reggae Starz Radio',				
+      desc: 'UK',				
+      id: 37,				
+    },
+    {
+      audioSrc:
+        'http://uk4-vn.mixstream.net:8128/stream.mp3',				
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRRIcon.png',			
+      name: 'House Music',				
+      desc: 'UK',				
+      id: 38,				
+    },
+    {
+      audioSrc:
+        'http://philae.shoutca.st:8161/stream',				
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRRIcon.png',			
+      name: 'Golden Oldies',				
+      desc: 'UK',				
+      id: 39,				
+    },
+    {
+      audioSrc:
+        'https://stream1.themediasite.co.uk:7018/stream',				
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRRIcon.png',			
+      name: 'Love 80s - Manchester',				
+      desc: 'UK',				
+      id: 40,				
+    },
+    {
+      audioSrc:
+        'http://ice-the.musicradio.com/SmoothNorthWestMP3',				
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRRIcon.png',			
+      name: 'Smooth Radio North West',				
+      desc: 'UK',				
+      id: 41,				
+    },
+    {
+      audioSrc:
+        'http://198.105.216.204:8194/;',				
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRRIcon.png',			
+      name: 'Classic Country 1630 AM',				
+      desc: 'UK',				
+      id: 42,				
+    },
+    {
+      audioSrc:
+        'https://pophits128-thehitsnetwork.radioca.st/http:/pollux.shoutca.st:8939/1',				
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRRIcon.png',			
+      name: 'Pop Hits',				
+      desc: 'UK',				
+      id: 43,				
+    },
+    {
+      audioSrc:
+        'https://streamer.radio.co/s0de514535/low',				
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRRIcon.png',			
+      name: 'House FM',				
+      desc: 'UK',				
+      id: 44,				
+    },
+    {
+      audioSrc:
+        'https://radio1.streamserver.link/radio/8110/100chill-aac',				
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRRIcon.png',			
+      name: '100 Chill',				
+      desc: 'UK',				
+      id: 45,				
+    },
+    {
+      audioSrc:
+        'https://bsj.lucasmultimedia.com:8002/stream.ogg',				
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRRIcon.png',			
+      name: 'Best Smooth Jazz',				
+      desc: 'UK',				
+      id: 46,				
+    },
+    {
+      audioSrc:
+        'http://radio.strictly.house:9500/stream?hash=1575015166470.mp3',				
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRRIcon.png',			
+      name: '247 House',				
+      desc: 'UK',				
+      id: 47,				
+    },
+    {
+      audioSrc:
+        'http://149.255.59.3:8232/;',				
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRRIcon.png',			
+      name: 'Blues Radio',				
+      desc: 'UK',				
+      id: 48,				
+    },
+    {
+      audioSrc:
+        'https://media-ice.musicradio.com/CapitalManchesterMP3',				
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRRIcon.png',			
+      name: 'Capital Manchester 102.0',				
+      desc: 'UK',				
+      id: 49,				
+    },
+    {
+      audioSrc:
+        'http://89.249.7.68/alwayselvisradio',				
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRRIcon.png',			
+      name: 'Always Elvis Presley Radio',				
+      desc: 'UK',				
+      id: 50,				
+    },
+    {
+      audioSrc:
+        'http://listen-cheesyfm.sharp-stream.com/cheesyfm.mp3',				
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRRIcon.png',			
+      name: 'Cheesy FM',				
+      desc: 'UK',				
+      id: 51,				
+    },
+    {
+      audioSrc:
+        'http://ice-the.musicradio.com/SmoothScotlandMP3',				
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRRIcon.png',			
+      name: 'Smooth Radio Scotland',				
+      desc: 'UK',				
+      id: 52,				
+    },
+    {
+      audioSrc:
+        'http://65.21.202.84:8519/stream',				
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRRIcon.png',			
+      name: 'Soul Central',				
+      desc: 'UK',				
+      id: 53,				
+    },
+    {
+      audioSrc:
+        'https://media-ice.musicradio.com/HeartSouthWalesMP3',				
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRRIcon.png',			
+      name: 'Heart Radio Wales',				
+      desc: 'UK',				
+      id: 54,				
+    },
+    {
+      audioSrc:
+        'https://realhouseradio.out.airtime.pro/realhouseradio_a',				
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRRIcon.png',			
+      name: 'Real House Radio',				
+      desc: 'UK',				
+      id: 55,				
+    },
+    {
+      audioSrc:
+        'https://kastos.cdnstream.com/1345_320',				
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRRIcon.png',			
+      name: 'All Oldies',				
+      desc: 'UK',				
+      id: 56,				
+    },
+    {
+      audioSrc:
+        'http://149.255.59.162:8045/1',				
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRRIcon.png',			
+      name: 'Dance Attack FM',				
+      desc: 'UK',				
+      id: 57,				
+    },
+    {
+      audioSrc:
+        'https://16963.live.streamtheworld.com/SAM03AAC226_SC',				
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRRIcon.png',			
+      name: '80s Radio',				
+      desc: 'UK',				
+      id: 58,				
+    },
+    {
+      audioSrc:
+        'http://sc6.radiocaroline.net:8040/;',				
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRRIcon.png',			
+      name: 'Radio Caroline',				
+      desc: 'UK',				
+      id: 59,				
+    },
+    {
+      audioSrc:
+        'http://ice-the.musicradio.com/CapitalXTRANationalMP3',				
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRRIcon.png',			
+      name: 'Capital XTRA National',				
+      desc: 'UK',				
+      id: 60,				
+    },
+    {
+      audioSrc:
+        'http://node-28.zeno.fm/8nrd1c9fhzzuv?rj-ttl=5&rj-tok=AAABftigcssAla7QJftKQbGGyA',				
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRRIcon.png',			
+      name: 'Reggae Ambassadors Radio',				
+      desc: 'UK',				
+      id: 61,				
+    },
+    {
+      audioSrc:
+        'http://vis.media-ice.musicradio.com/RadioXManchester',				
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRRIcon.png',			
+      name: 'Radio X Manchester',				
+      desc: 'UK',				
+      id: 62,				
+    },
+    {
+      audioSrc:
+        'https://ssl.shoutcaststreaming.us:8045/;',				
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRRIcon.png',			
+      name: '24-7 Reggae',				
+      desc: 'UK',				
+      id: 63,				
+    },
+    {
+      audioSrc:
+        'http://rss-streaming.co.uk:8062/;',				
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRRIcon.png',			
+      name: 'Love 80s - Liverpool',				
+      desc: 'UK',				
+      id: 64,				
+    },
+    {
+      audioSrc:
+        'http://176.58.99.7:8000/dnbww128.mp3',				
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRRIcon.png',			
+      name: 'Drum And Bass Worldwide',				
+      desc: 'UK',				
+      id: 65,				
+    },
+    {
+      audioSrc:
+        'http://46.105.122.141:9676/;',				
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRRIcon.png',			
+      name: 'NonStopOldies',				
+      desc: 'UK',				
+      id: 66,				
+    },
+    {
+      audioSrc:
+        'https://direct.sharp-stream.com/sunriseradio.mp3',				
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRRIcon.png',			
+      name: 'Sunrise Radio',				
+      desc: 'UK',				
+      id: 67,				
+    },
+    {
+      audioSrc:
+        'http://eu8.fastcast4u.com:5416/;',				
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRRIcon.png',			
+      name: 'Riddim Roots Radio',				
+      desc: 'UK',				
+      id: 68,				
+    },
+    {
+      audioSrc:
+        'https://radio.streemlion.com:1875/stream',				
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRRIcon.png',			
+      name: 'Energy FM - Dance Music',				
+      desc: 'UK',				
+      id: 69,				
+    },
+    {
+      audioSrc:
+        'http://media-ice.musicradio.com/HeartNorthWest',				
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRRIcon.png',			
+      name: 'Heart North West',				
+      desc: 'UK',				
+      id: 70,				
+    },
+    {
+      audioSrc:
+        'https://solid2.streamupsolutions.com/proxy/jcdcfujk?mp=/;type=mp3',				
+      coverSrc: 'https://i.ibb.co/FBM95gv/RRRIcon.png',			
+      name: 'Chill Out FM',				
+      desc: 'UK',				
+      id: 71,				
+    },
+  ];
+
+  const currentTrackName = document.querySelector('header h3');
+  const currentTrackDesc = document.querySelector('header p');
+  const currentTrackCover = document.querySelector('header img');
+  const currentTrackAudio = document.querySelector('audio');
+  const playPauseBtn = document.querySelector('.event-playPause');
+  const muteUnmuteBtn = document.querySelector('.event-muteUnmute');
+  const playNextBtn = document.querySelector('.event-next');
+  const playPrevBtn = document.querySelector('.event-prev');
+  const progress = document.querySelector('.slider-progress');
+  const currentTrackTime = document.querySelector('.count-current');
+  const finalTrackTime = document.querySelector('.count-final');
+  // ADD TRACKS TO MY PLAYLIST ON PAGE LOAD
+  (function addMyTracksList() {
+    for (let track of tracksList) {
+      var li = document.createElement('li');
+      li.id = track.id;
+      li.innerHTML = `
+                    <div class="track-number">0${track.id}</div>
+                    <img
+                    src=${track.coverSrc}
+                    class="track-img"
+                    alt=""
+                    />
+
+                    <div class="track-detail">
+                    <div class="track-detail_name">${track.name}</div>
+                    <div class="track-detail_desc">
+                        <small>${track.desc}</small>
+                    </div>
+                    </div>
+        `;
+      document.querySelector('ul').appendChild(li);
+      (function (id) {
+        li.addEventListener(
+          'click',
+          () => {
+            playSelectedTrack(id);
+          },
+          false
+        );
+      })(track.id);
+    }
+  })();
+
+  let trackId = 1;
+
+  const loadTrack = (songId) => {
+    const song = tracksList.find((track) => track.id === songId);
+
+    const { audioSrc, coverSrc, name, desc } = song;
+    currentTrackName.innerText = name;
+    currentTrackDesc.innerText = desc;
+    currentTrackAudio.src = audioSrc;
+    currentTrackCover.src = coverSrc;
+  };
+
+  const playSelectedTrack = (songId) => {
+    trackId = songId;
+    loadTrack(songId);
+    playTrack();
+  };
+
+  loadTrack(trackId);
+
+  const playTrack = () => {
+    playPauseBtn.classList.remove('fa-play');
+    playPauseBtn.classList.add('fa-pause');
+
+    currentTrackAudio.play();
+  };
+
+  const pauseTrack = () => {
+    playPauseBtn.classList.remove('fa-pause');
+    playPauseBtn.classList.add('fa-play');
+
+    currentTrackAudio.pause();
+  };
+
+  const playPrevTrack = () => {
+    trackId--;
+
+    if (trackId < 0) {
+      trackId = tracksList.length - 1;
+    }
+    loadTrack(trackId);
+    playTrack();
+  };
+
+  const playNextTrack = () => {
+    trackId++;
+    if (trackId > tracksList.length - 1) {
+      trackId = 0;
+    }
+    loadTrack(trackId);
+    playTrack();
+  };
+
+  const updateProgress = () => {
+    const currentTime = currentTrackAudio.currentTime;
+    const trackDuration = currentTrackAudio.duration;
+    const percent = (currentTime / trackDuration) * 100;
+    progress.style.width = percent + '%';
+    let curMins = Math.floor(currentTime / 60);
+    let curSecs = Math.floor(currentTime - curMins * 60);
+    let durMins = Math.floor(trackDuration / 60) || '--';
+    let durSecs = Math.floor(trackDuration - durMins * 60) || '--';
+
+    if (curMins < 10) {
+      curMins = `0${curMins}`;
+    }
+    if (curSecs < 10) {
+      curSecs = `0${curSecs}`;
+    }
+    if (durMins < 10) {
+      durMins = `0${durMins}`;
+    }
+    if (durSecs < 10) {
+      durSecs = `0${durSecs}`;
+    }
+
+    currentTrackTime.innerText = `${curMins}:${curSecs}`;
+    finalTrackTime.innerText = `${durMins}:${durSecs}`;
+  };
+
+  const muteUnmuteTrack = () => {
+    if (currentTrackAudio.muted) {
+      currentTrackAudio.muted = false;
+      muteUnmuteBtn.classList.remove('fa-volume-mute');
+      muteUnmuteBtn.classList.add('fa-volume-up');
+    } else {
+      currentTrackAudio.muted = true;
+      muteUnmuteBtn.classList.remove('fa-volume-up');
+      muteUnmuteBtn.classList.add('fa-volume-mute');
+    }
+  };
+
+  playPauseBtn.addEventListener('click', () => {
+    const currentlyPlaying = playPauseBtn.classList.contains('fa-pause');
+
+    currentlyPlaying ? pauseTrack() : playTrack();
+  });
+  muteUnmuteBtn.addEventListener('click', () => muteUnmuteTrack());
+
+  playPrevBtn.addEventListener('click', () => playPrevTrack());
+  playNextBtn.addEventListener('click', () => playNextTrack());
+
+  currentTrackAudio.addEventListener('timeupdate', () => updateProgress());
+});
+</script></body></html><!-- https://t.me/htmlcoding_html_coding_free -->
