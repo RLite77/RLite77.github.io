@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Digital Clock</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+<style>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    text-decoration: none;
+    line-height: normal;
+    letter-spacing: normal;
+    font-size: 12px;
+    font-weight: 900;
+    font-family: Orbitron, 'Courier New', Courier, monospace;
+    color: #17feb9cf;
+    background: #0c0c0c;
+}
+.wrapper {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+@media screen and (max-width: 900px ) {
+    * {
+        font-size: 12px;
+
+    }    
+}
+
+@media screen and (max-width: 600px) {
+    * {
+        font-size: 12px;
+
+    }   
+}
+</style>
+</head>
+
+<body>
+    <div class="wrapper">
+        <div id="dateDisplay" class="date" onload="showDate()"></div>
+        <div id="clockDisplay" class="clock" onload="showTime()"></div>
+    </div>
+    <script src="app.js"></script>
+</body>
+<script>
+function showDate() {
+    let date = new Date();
+
+    const currentDate = date.toDateString();
+
+    document.getElementById("dateDisplay").innerHTML = currentDate;
+    document.getElementById("dateDisplay").textContent = currentDate;
+    setTimeout(showDate, 100000);
+}
+showDate();
+
+function showTime() {
+    let date = new Date();
+    let hours = date.getHours(); // 0 - 23
+    let minutes = date.getMinutes(); // 0 - 59
+    let seconds = date.getSeconds(); // 0 - 59
+    let session = "AM";
+
+    if (hours == 0) {
+        hours = 12;
+    }
+    if (hours > 12) {
+        hours = hours - 12;
+        session = "PM";
+    }
+
+    hours = (hours < 10) ? "0" + hours : hours;
+    minutes = (minutes < 10) ? "0" + minutes : minutes;
+    seconds = (seconds < 10) ? "0" + seconds : seconds;
+
+    const time = hours + ":" + minutes + ":" + seconds + " " + session;
+
+    document.getElementById("clockDisplay").innerText = time;
+    document.getElementById("clockDisplay").textContent = time;
+    setTimeout(showTime, 1000);
+}
+showTime();
+</script>
+</html>
