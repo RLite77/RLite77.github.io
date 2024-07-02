@@ -59,7 +59,7 @@ const controls = ui.getControls();
 const player = controls.getPlayer();
 window.player = player;
 window.ui = ui;
-
+player.setTextTrackVisibility(true);
 player.configure({
 drm: {"clearKeys": {
       'c24a7811d9ab46b48b746a0e7e269210':'c321afe1689b07d5b7e55bd025c483ce'
@@ -83,6 +83,8 @@ console.log('The video has now been loaded!');
 onPlayerError(error);
 }
 
+
+
 }
 
 function onPlayerErrorEvent(errorEvent) {
@@ -102,6 +104,6 @@ console.error('Unable to load the UI library!');
 }
 document.addEventListener('shaka-ui-loaded', init);
 document.addEventListener('shaka-ui-load-failed', initFailed);
-
+  
   
   </script>
