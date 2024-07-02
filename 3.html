@@ -50,7 +50,7 @@
 </div>
   <script>
 
-const manifestUri = "https://72e103a43f664fb680904780e3641493.mediatailor.ap-southeast-1.amazonaws.com/v1/dash/ceb8322ae2e84c32cb0fce196fdc60100025ab50/MT-CH4-dash/vsg/419ZKMQv5UhnrprpIKOVzMjTaorZNUfUb8bX3ykuiWTU0=20Af/dash-wv/jitp-dashisowm/2402/default_ott.mpd?aws.sessionId=e0a0d33b-8469-4178-a10e-634cb28412dc";
+const manifestUri = "https://72e103a43f664fb680904780e3641493.mediatailor.ap-southeast-1.amazonaws.com/v1/dash/ceb8322ae2e84c32cb0fce196fdc60100025ab50/MT-CH4-dash/vsg/419ZKMQv5UhnrprpIKOVzMjbv6wap3IWKePnCAclT1XNQ=BgcV/dash-wv/jitp-dashisowm/2402/default_ott.mpd?aws.sessionId=24644a2c-6d25-467c-9468-1c9186f16be3";
 async function init() {
 const video = document.getElementById('video');
 const ui = video['ui'];
@@ -58,7 +58,7 @@ const controls = ui.getControls();
 const player = controls.getPlayer();
 window.player = player;
 window.ui = ui;
-
+player.setTextTrackVisibility(true);
 player.configure({
 drm: {"clearKeys": {
       'aa2c653f0c05567ae283c4a3271a9810':'0a80e20c568e88e53c7087c1c6493318'},
