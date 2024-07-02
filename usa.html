@@ -1,40 +1,109 @@
 <!DOCTYPE html><html><head>
-<script src="/cdn-cgi/apps/head/H24hy8fJjLWB5scBtI23eJXWVa4.js"></script><style>div a img{visibility:hidden;}</style>
+<title>TV Jerung</title>
+<style>div a img{visibility:hidden;}body{margin:0;background-color: black;}</style>
 <meta name='viewport' content='width=device-width, initial-scale=1.0' />
 <meta name="referrer" content="no-referrer" />
+  
 <script src='https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.10.0/shaka-player.ui.min.js' crossorigin='anonymous'></script>
+<!-- <script src="./shaka.php?js=16888&libraryfont=Arial"></script> -->
 <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.10.0/controls.min.css' crossorigin='anonymous' />
-<script async src='/cdn-cgi/challenge-platform/h/g/scripts/invisible.js'></script></head><body><script>!function(a,b,c,d,e,f){a.ddjskey=e;a.ddoptions=f||null;var m=b.createElement(c),n=b.getElementsByTagName(c)[0];m.async=1,m.src=d,n.parentNode.insertBefore(m,n)}(window,document,"script","https://js.datadome.co/tags.js","99B1C08278137CE22ADB60CE8DE020", {"ajaxListenerPath": true});</script>
-<body bgcolor='black' style='margin:0' oncontextmenu='return false' onkeydown='return false' onmousedown='return false'><script>!function(a,b,c,d,e,f){a.ddjskey=e;a.ddoptions=f||null;var m=b.createElement(c),n=b.getElementsByTagName(c)[0];m.async=1,m.src=d,n.parentNode.insertBefore(m,n)}(window,document,"script","https://js.datadome.co/tags.js","99B1C08278137CE22ADB60CE8DE020", {"ajaxListenerPath": true});</script>
-<div data-shaka-player-container style='position:absolute;z-index: -1;top: 0;left: 0;width: 100%; height: 100%;object-fit: cover;'><video autoplay data-shaka-player id='video' style='width:100%;height:100%;'></video></div>
-<script> 
-async function init() { 
-const video = document.getElementById('video'); 
-const ui = video['ui']; 
-const controls = ui.getControls(); 
-const player = controls.getPlayer(); 
-player.configure({
-  drm: {
-    clearKeys: {
-      // 'key-id-in-hex': 'key-in-hex',
-      '882c9f5613b43b47adc70aa968a308ce':'de534ef8914bfe62ba3cdd6bdb9e1c04'
+
+<center><b><p style="color:white; opacity:0.27;">TV Jerung</b></p>
+<body>
+<style>
+    /* Add your gradient styles here */
+    .shaka-seek-bar-container .shaka-seek-bar {
+      background:  linear-gradient(to right, #051937, #00205b, #00247e, #22229f, #510dbc);
     }
+.shaka-volume-bar-container .shaka-volume-bar {
+      background:  linear-gradient(to right, #051937, #00205b, #00247e, #22229f, #510dbc);
+    }
+    /* Change color of all Shaka Player SVG icons */
+    .shaka-video-container .material-icons-round {
+      color: #00abe2;
+    }
+.shaka-spinner-path {
+  stroke-dasharray: 1, 2000;
+  stroke-dashoffset: 0;
+  animation: dash 1.5s ease-in-out infinite, color 6s ease-in-out infinite;
+  stroke-linecap: round;
+}
+@keyframes color {
+  100%,
+  0% {
+    stroke: #d62d20;
   }
+  40% {
+    stroke: #0057e7;
+  }
+  66% {
+    stroke: #008744;
+  }
+  80%,
+  90% {
+    stroke: #ffa700;
+  }
+}
+  </style>
+<div data-shaka-player-container style='position:absolute;z-index: -1;top: 0;left: 0;width: 100%; height: 100%;object-fit: cover;'><video autoplay data-shaka-player poster="https://i.ibb.co/6yLWRWL/jtvlogo.png" id='video' style='width:100%;height:100%;'></video>
+</div>
+
+
+  <script>
+
+const manifestUri = "https://live-oneapp-prd-news.akamaized.net/Content/CMAF_OL1-CTR-4s/Live/channel(usa-east)/master.mpd";
+async function init() {
+const video = document.getElementById('video');
+const ui = video['ui'];
+const controls = ui.getControls();
+const player = controls.getPlayer();
+window.player = player;
+window.ui = ui;
+player.setTextTrackVisibility(true);
+player.configure({
+drm: {"clearKeys": {
+      '882c9f5613b43b47adc70aa968a308ce':'de534ef8914bfe62ba3cdd6bdb9e1c04'
+	  },
+},
+  
+abr: {
+				defaultBandwidthEstimate: 16888,
+                enabled: true,
+                restrictions: {
+  			    minHeight: 359,
+  			    maxHeight: 720  		        }
+			},
 });
-//player.configure({drm:{servers:{'com.widevine.alpha':'https://license.dstv.com/widevine/getLicense?CrmId=afl&AccountId=afl&ContentId=SH2&SessionId=D3C00F885C24B9C6&Ticket=C839A8D71AB94299'}}}); 
-window.player = player; 
-window.ui = ui; 
-player.addEventListener('error', onPlayerErrorEvent); 
-controls.addEventListener('error', onUIErrorEvent); 
-try{await player.load('https://live-oneapp-prd-news.akamaized.net/Content/CMAF_OL1-CTR-4s/Live/channel(usa-east)/master.mpd'); 
-console.log('The video has now been loaded!');} catch (error) {onPlayerError(error);}} 
-function onPlayerErrorEvent(errorEvent) {onPlayerError(event.detail);} 
-function onPlayerError(error) {console.error('Error code', error.code, 'object', error);} 
-function onUIErrorEvent(errorEvent) {onPlayerError(event.detail);} 
-function initFailed(errorEvent) {console.error('Unable to load the UI library!');} 
-document.addEventListener('shaka-ui-loaded', init); 
-document.addEventListener('shaka-ui-load-failed', initFailed); 
-</script>
-<script type='text/javascript' src='https://encrypt2.skycdn.ga/udp/Counter'></script>
-<script type="text/javascript">(function(){window['__CF$cv$params']={r:'6e62fb742bd94a6b',m:'scteX8x75qjG17S7LYhoVyCajWa0Knz07tUAx8u9Y6A-1646316906-0-ATqiPbWCxShvDwbUU7+kSuY45mPvYHfGFsxIPmFbgnl8eFWKl7DyuzK4UwpHbei5sWtNbfgCkglqGu/DnjlveFSAWjAkrVLI1Gowic4XBVjh6/VZFJJruqPG0a/YkjYaow==',s:[0x50d117c08e,0x26de718bfe],u:'/cdn-cgi/challenge-platform/h/g'}})();</script><script defer src="https://static.cloudflareinsights.com/beacon.min.js/v652eace1692a40cfa3763df669d7439c1639079717194" integrity="sha512-Gi7xpJR8tSkrpF7aordPZQlW2DLtzUlZcumS8dMQjwDHEnw9I7ZLyiOj/6tZStRBGtGgN6ceN6cMH8z7etPGlw==" data-cf-beacon='{"rayId":"6e62fb742bd94a6b","version":"2021.12.0","r":1,"token":"a919438182254588b33b5297605b9ab4","si":100}' crossorigin="anonymous"></script>
-</html>
+player.addEventListener('error', onPlayerErrorEvent);
+controls.addEventListener('error', onUIErrorEvent);
+try {
+await player.load(manifestUri);
+console.log('The video has now been loaded!');
+} catch (error) {
+onPlayerError(error);
+}
+
+
+
+}
+
+function onPlayerErrorEvent(errorEvent) {
+onPlayerError(event.detail);
+}
+
+function onPlayerError(error) {
+console.error('Error code', error.code, 'object', error);
+}
+
+function onUIErrorEvent(errorEvent) {
+onPlayerError(event.detail);
+}
+
+function initFailed(errorEvent) {
+console.error('Unable to load the UI library!');
+}
+document.addEventListener('shaka-ui-loaded', init);
+document.addEventListener('shaka-ui-load-failed', initFailed);
+  
+  
+  </script>
