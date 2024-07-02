@@ -50,7 +50,7 @@
 </div>
   <script>
 
-const manifestUri = "https://linears-playback.astro.com.my/vsg/419VQojKc7CVIKxKhfUy8uJyocJrmwZMOZWKSHr5ELzC8=0TMn/dash-wv/jitp-linearwm/1004/default_ott.mpd";
+const manifestUri = "https://linears-playback.astro.com.my/vsg/419VQojKc7CVIKxKhfUy8uJ6xbR6yHdsoUpVJ6T8yKOwA=fKhs/dash-wv/jitp-linearwm/1004/default_ott.mpd";
 async function init() {
 const video = document.getElementById('video');
 const ui = video['ui'];
@@ -58,7 +58,7 @@ const controls = ui.getControls();
 const player = controls.getPlayer();
 window.player = player;
 window.ui = ui;
-
+player.setTextTrackVisibility(true);
 player.configure({
 drm: {"clearKeys": {
       '3f726fd5cbbf5944437a4dbfab431b10':'376b009796e4ad50ea8f68d796676692'},
