@@ -4,9 +4,9 @@
 <meta name='viewport' content='width=device-width, initial-scale=1.0' />
 <meta name="referrer" content="no-referrer" />
   
-<script src='https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.3.5/shaka-player.ui.min.js' crossorigin='anonymous'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.10.0/shaka-player.ui.min.js' crossorigin='anonymous'></script>
 <!-- <script src="./shaka.php?js=16888&libraryfont=Arial"></script> -->
-<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.3.5/controls.min.css' crossorigin='anonymous' />
+<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.10.0/controls.min.css' crossorigin='anonymous' />
 
 <center><b><p style="color:white; opacity:0.27;">TV Jerung</b></p>
 <body>
@@ -51,7 +51,7 @@
 
   <script>
 
-const manifestUri = "http://linearjitp-playback.astro.com.my/dash-wv/linear/2303/manifest.mpd";
+const manifestUri = "http://linearjitp02-playback.astro.com.my/dash-wv/linear/2605/default_ott.mpd";
 async function init() {
 const video = document.getElementById('video');
 const ui = video['ui'];
@@ -62,7 +62,7 @@ window.ui = ui;
 player.setTextTrackVisibility(true);
 player.configure({
 drm: {"clearKeys": {
-      'c24a7811d9ab46b48b746a0e7e269210':'c321afe1689b07d5b7e55bd025c483ce'
+      '6093e12639b24cd651ee6b3c13446d10':'f8326f668c7bee309e5302b513e5bdf7'
 	  },
 },
   
