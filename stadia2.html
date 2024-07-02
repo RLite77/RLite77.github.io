@@ -59,7 +59,7 @@ const controls = ui.getControls();
 const player = controls.getPlayer();
 window.player = player;
 window.ui = ui;
-
+player.setTextTrackVisibility(true);
 player.configure({
 drm: {"clearKeys": {
       '1ece3ecb41699e855c6dc9a283908210':'ba08be767e1a5e89777e68a6998a8c19'
